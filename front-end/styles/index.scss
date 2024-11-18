@@ -1,0 +1,32 @@
+:root {
+  --primary-color: #5cbdb9;
+  --secondary-color: #ebf6f5;
+  --third-color: #f3c5aa;
+  --fourth-color: #dddcdb;
+  --button-background: #fbe3e8;
+  --bg-color: #f4f4f4;
+  --font-primary: #474040;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+main {
+  #banner {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  #filter {
+    display: flex;
+    justify-content: center;
+  }
+
+  label {
+    border: 2px solid var(--primary-color);
+      padding: 6px 18px;
+      color: var(--third-color);
+  }
+}

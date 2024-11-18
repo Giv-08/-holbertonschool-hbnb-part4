@@ -1,0 +1,27 @@
+:root {
+  --primary-color: #879676;
+  --secondary-color: #fce181c;
+  --third-color: #9fedd7;
+  --fourth-color: #fef9c7;
+  --background: #edeae5;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+main #banner {
+  width: 100%;
+}
+main #banner img {
+  width: 100%;
+}
+main #filter {
+  display: flex;
+  justify-content: center;
+}
+main label {
+  border: 2px solid var(--primary-color);
+  padding: 6px 18px;
+  color: var(--third-color);
+}
+
+/*# sourceMappingURL=index.css.map */
