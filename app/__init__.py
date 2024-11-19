@@ -5,15 +5,16 @@ from app.api.v1.users import api as users_ns
 from app.api.v1.amenities import api as amenities_ns
 from app.api.v1.places import api as places_ns
 from app.api.v1.reviews import api as reviews_ns
-# from app import db
-# from config import config
+from flask_cors import CORS
 
 db = SQLAlchemy()
 
 def create_app():
     """ method used to create an app instance """
     app = Flask(__name__)
-    api = Api(app, version='1.0', title='HBnB API', description='HBnB Application API')
+    api = Api(app, version='1.0', title='HBnB API', description='HBnB Application API', doc='/swagger')
+    CORS(app)
+
     # Register the namespaces
     api.add_namespace(users_ns, path='/api/v1/users')
     api.add_namespace(amenities_ns, path='/api/v1/amenities')
