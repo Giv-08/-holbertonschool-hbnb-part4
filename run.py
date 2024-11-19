@@ -18,18 +18,7 @@ import requests
 # app = create_app()
 
 app = Flask(__name__)
-
-# Need to add CORS so that we can do API calls in Part 4
-CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
-api = Api(app, version='1.0', title='HBnB API', description='HBnB Application API')
-
-# Register the namespaces
-api.add_namespace(users_ns, path='/api/v1/users')
-api.add_namespace(amenities_ns, path='/api/v1/amenities')
-api.add_namespace(places_ns, path='/api/v1/places')
-api.add_namespace(reviews_ns, path='/api/v1/reviews')
-
-@app.route('/index')
+@app.route('/')
 def index():
     try:
         response = requests.get('http://0.0.0.0:5000/api/v1/places/')
@@ -43,6 +32,17 @@ def index():
         places = []
 
     return render_template('index.html', places=places)
+
+# Need to add CORS so that we can do API calls in Part 4
+CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+api = Api(app, version='1.0', title='HBnB API', description='HBnB Application API', doc='/swagger')
+
+# Register the namespaces
+api.add_namespace(users_ns, path='/api/v1/users')
+api.add_namespace(amenities_ns, path='/api/v1/amenities')
+api.add_namespace(places_ns, path='/api/v1/places')
+api.add_namespace(reviews_ns, path='/api/v1/reviews')
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)

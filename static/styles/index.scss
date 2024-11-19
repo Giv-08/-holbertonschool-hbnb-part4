@@ -1,10 +1,11 @@
 :root {
-  --first-color: #5cbdb9;
-  --second-color: #ebf6f5;
-  --link-color: #f3c5aa;
+  // --first-color: #5cbdb9;
+  --firt-color: #a4cbc9;
+  --second-color: #3c3c46;
+  --link-color: #a4b6c2;
   --hover-color: #f5b56c;
-  --base-color: #dddcdb;
-  --button-background: #f7ccd5;
+  --base-color: #e1e1db;
+  --button-background: #f37a1f;
   --bg-color: #f4f4f4;
   --font-primary: #474040;
   --white: #ffffff;
@@ -13,8 +14,6 @@
 
 main {
   #banner {
-    width: 100%;
-
     img {
       width: 100%;
     }
@@ -23,22 +22,103 @@ main {
   #filter {
     display: flex;
     justify-content: center;
+    padding: 1.5rem;
+    height: 80px;
+
+    label {
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    #price-filter {
+      border: none;
+      width: 90px;
+      background-color: #e3ddd9;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      margin-right: 2rem;
+    }
+
+    input {
+      border: none;
+      width: 200px;
+      padding-left: 1rem;
+      background-color: #e3ddd9;
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+    }
+
+    #search-btn {
+      border: none;
+      padding: 6px 20px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      background-color: var(--button-background);
+      font-size: 0.8rem;
+    }
   }
 
   label {
     border: 2px solid var(--primary-color);
-      padding: 6px 18px;
-      color: var(--third-color);
-    }
+    padding: 6px 20px;
+    color: var(--third-color);
+    background-color:var(--button-background);
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+  }
 
-  #places-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-    gap: 2rem;
+  section {
+    .places-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      justify-items: center;
+      gap: 3rem;
+      margin: 4rem;
 
-    .place-card {
-      background-color: var(--second-color);
+      .place-photo {
+        max-width: 100%;
+        border-radius: 15px;
+      }
+
+      .place-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 15px;
+        align-items: flex-start;
+
+        .place-detail-box {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          justify-items: end;
+          padding: 0.8rem 0rem;
+
+          .rating-box {
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            right: 0;
+          }
+
+          p {
+            font-size: 0.95rem;
+            line-height: 20px;
+          }
+        }
+
+        h2 {
+          font-size: 1.2rem;
+          font-weight: 500;
+          line-height: 30px;
+          color: var(--first-color);
+          letter-spacing: 1.5px;
+        }
+      }
+
+      .place-card {
+        background-color: var(--second-color);
+      }
     }
   }
 }

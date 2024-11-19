@@ -6,6 +6,8 @@
     <title>HBNB</title>
     <link rel="stylesheet" href="../static/styles/index.css">
     <link rel="stylesheet" href="../static/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
@@ -26,29 +28,44 @@
       <div id="banner">
         <img src="../static/assets/banner.png" alt="banner">
       </div>
-        <section id="filter">
-            <label for="price-filter">Max Price:</label>
-            <select id="price-filter">
-                <!-- Options will be populated dynamically -->
-            </select>
-        </section>
-        <section id="places-list">
-          <div id="places-container">
-            <!-- Iterate over places passed from Flask and display them -->
-            {% if places %}
-                {% for place in places %}
-                    <div class="place-item">
-                        <h2>{{ place.title }}</h2>
-                        <p>Latitude: {{ place.latitude }}</p>
-                        <p>Longitude: {{ place.longitude }}</p>
+      <section id="filter">
+          <label for="price-filter">Max Price:</label>
+          <select id="price-filter">
+          <input id="seach-box" type="search" id="site-search" name="q" placeholder="farmhouse..."/>
+          <button id="search-btn">Search</button>
+              <!-- Options will be populated dynamically -->
+          </select>
+      </section>
+      <section id="places-list">
+        <div class="places-container">
+          <!-- Iterate over places passed from Flask and display them -->
+          {% if places %}
+              {% for place in places %}
+                  <div class="place-item">
+                    <div class="image-box">
+                      <i class="fa-regular fa-heart"></i>
+                      <img class="place-photo" src="https://media.gq.com/photos/66019f02c081abc36b271454/16:9/w_1280,c_limit/airbnb-art.jpg" alt="random_place_photo">
                     </div>
-                {% endfor %}
-            {% else %}
-                <p>No places available.</p>
-            {% endif %}
-        </div>
-            <!-- List of places will be populated dynamically -->
-        </section>
+                    <div class="place-detail-box">
+                      <div class="des-box">
+                        <h2><i class="fa-solid fa-house-chimney"></i> {{ place.title }}</h2>
+                        <p><strong>Description:</strong> {{ place.description }}</p>
+                        <p><strong>Latitude:</strong> {{ place.latitude }} <i class="fa-solid fa-location-dot"></i></p>
+                        <p><strong>Longitude:</strong> {{ place.longitude }} <i class="fa-solid fa-location-dot"></i></p>
+                      </div>
+                      <div class="rating-box">
+                        <!-- javascript -->
+                        <p>Rating: <span style="color:rgb(255, 212, 19); "class="fa fa-star"></span><span style="color:rgb(255, 212, 19); "class="fa fa-star"></span></p>
+                      </div>
+                      </div>
+                    </div>
+              {% endfor %}
+          {% else %}
+              <p>No places available.</p>
+          {% endif %}
+      </div>
+          <!-- List of places will be populated dynamically -->
+      </section>
     </main>
     <footer>
       <div id="slogan_div">
@@ -59,9 +76,9 @@
         <div id="social">
           <h1 id="contact">Connect with us</h1>
             <ul>
-              <li>facebook</li>
-              <li>twitter</li>
-              <li>instagram</li>
+              <li><i class="fa-brands fa-facebook"></i></li>
+              <li><i class="fa-brands fa-twitter"></i></li>
+              <li><i class="fa-brands fa-instagram"></i></li>
             </ul>
         </div>
         <div id="policy">
