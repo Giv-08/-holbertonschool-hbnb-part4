@@ -1,30 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place Details</title>
-    <link rel="stylesheet" href="../styles/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/styles.css">
+  <link rel="stylesheet" href="../static/styles/place.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Place</title>
 </head>
 <body>
+  <header>
+    <nav>
+      <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
+      <ul>
+        <!-- <li><a href="/">INDEX</a></li> -->
+        <li><a href="/contact">CONTACT US</a></li>
+        <li><a href="/login" id="login-link">LOGIN</a></li>
+      </ul>
+    </nav>
+  </header>
   <!-- Create a detailed view for a specific place including detailed information -->
     <main>
-        <section id="place-details">
-            <!-- Place details will be populated dynamically -->
-        </section>
-        <section id="reviews">
-            <!-- Reviews will be populated dynamically -->
-        </section>
-        <section id="add-review">
-            <h2>Add a Review</h2>
-            <form id="review-form">
-                <label for="review-text">Review:</label>
-                <textarea id="review-text" name="review-text" required></textarea>
-
-                <button type="submit">Submit</button>
-            </form>
-        </section>
+      <!-- Place details will be populated dynamically -->
+      <!-- place detail section -->
+      <section id="place-section">
+        <div id="detail-box">
+          <img class="place-photo" src="https://media.gq.com/photos/66019f02c081abc36b271454/16:9/w_1280,c_limit/airbnb-art.jpg" alt="random_place_photo">
+          <h1>{{ place['title'] }}</h1>
+          <p><strong>Description:</strong> {{ place['description'] }}</p>
+          <p><i class="fa-solid fa-dollar-sign"></i><strong>Price:</strong> ${{ place['price'] }}</p>
+          <p><i class="fa-solid fa-location-dot"></i><strong>Latitude:</strong> {{ place['latitude'] }}</p>
+          <p><i class="fa-solid fa-location-dot"></i><strong>Longitude:</strong> {{ place['longitude'] }}</p>
+          <p><strong>Amenity:</strong></p>
+        {% if place.amenities %}
+        {% for amenity in place.amenities %}
+          <ul>
+            <li>{{ amenity.name }}</li>
+          </ul>
+          {% endfor %}
+        {% else %}
+          <p>No amenities listed for this place.</p>
+        {% endif %}
+          <a id="review-btn" href="{{ url_for('add_review', place_id=place['place_id']) }}">Add a review</a>
+        </div>
+      </section>
+        <h2>Reviews</h2>
+        <!-- review section -->
+      <section id="review-section">
+        <!-- Reviews will be populated dynamically -->
+        <div class="review-box">
+          {% if place['reviews'] %}
+            {% for review in place['reviews'] %}
+              <div class="review">
+                <img class="avatar" src="https://i.pravatar.cc/80?u={{ range(1,70) | random }}" alt="avatar">
+                <p class="author">{{ review['author'] }}</p>
+                <p><strong>Review:</strong> {{ review['review'] }}</p>
+                <p><strong>Rating:</strong> {{ review['rating'] }}</p>
+              </div>
+            {% endfor %}
+          {% else %}
+            <p>No reviews for {{ place['title'] }}. Be the first person to review!</p>
+          {% endif %}
+        </div>
+      </section>
     </main>
-    <script src="../javascript/scripts.js"></script>
+    <footer>
+      <div id="slogan_div">
+        <img src="../static/assets/logo.png" alt="logo">
+        <p>Your go-to platform for finding and listing amazing places to stay. Whether you're looking for a cozy cabin, a chic apartment, or a luxurious villa, HBnB has got you covered!</p>
+      </div>
+      <div id="social_policy">
+        <div id="social">
+          <h1 id="contact">Connect with us</h1>
+            <ul>
+              <li>facebook</li>
+              <li>twitter</li>
+              <li>instagram</li>
+            </ul>
+        </div>
+        <div id="policy">
+          <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/cookies">Cookie Policy</a></p>
+        </div>
+      </div>
+    </footer>
+    <script src="../static/scripts.js"></script>
 </body>
 </html>

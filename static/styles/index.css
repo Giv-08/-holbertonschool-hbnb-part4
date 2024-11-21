@@ -75,28 +75,30 @@ main section .places-container .place-item {
   border-radius: 15px;
   align-items: flex-start;
 }
+main section .places-container .place-item h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 30px;
+  color: var(--first-color);
+  letter-spacing: 1.5px;
+}
 main section .places-container .place-item .place-detail-box {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  justify-items: end;
+  justify-items: start;
   padding: 0.8rem 0rem;
+  width: 100%;
 }
 main section .places-container .place-item .place-detail-box .rating-box {
   display: flex;
   align-items: flex-end;
-  position: relative;
-  right: 0;
 }
 main section .places-container .place-item .place-detail-box p {
   font-size: 0.95rem;
   line-height: 20px;
 }
-main section .places-container .place-item h2 {
-  font-size: 1.2rem;
-  font-weight: 500;
-  line-height: 30px;
-  color: var(--first-color);
-  letter-spacing: 1.5px;
+main section .places-container .place-item .place-detail-box i {
+  margin-right: 5px;
 }
 main section .places-container .place-card {
   background-color: var(--second-color);

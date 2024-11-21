@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../static/styles/styles.css">
 </head>
 <body>
+  <header>
+    <nav>
+      <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
+      <ul>
+        <li><a href="/add_review">ADD REVIEW</a></li>
+        <li><a href="#">CONTACT US</a></li>
+        <!-- <li><a href="/login" id="login-link">LOGIN</a></li> -->
+      </ul>
+        <!-- search box -->
+    </nav>
+  </header>
   <!-- Create a login form with fields for email and password -->
     <main>
         <form id="login-form">
@@ -20,6 +31,25 @@
             <button type="submit">Login</button>
         </form>
     </main>
+    <footer>
+      <div id="slogan_div">
+        <img src="../static/assets/logo.png" alt="logo">
+        <p>Your go-to platform for finding and listing amazing places to stay. Whether you're looking for a cozy cabin, a chic apartment, or a luxurious villa, HBnB has got you covered!</p>
+      </div>
+      <div id="social_policy">
+        <div id="social">
+          <h1 id="contact">Connect with us</h1>
+            <ul>
+              <li><i class="fa-brands fa-facebook"></i></li>
+              <li><i class="fa-brands fa-twitter"></i></li>
+              <li><i class="fa-brands fa-instagram"></i></li>
+            </ul>
+        </div>
+        <div id="policy">
+          <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/cookies">Cookie Policy</a></p>
+      </div>
+    </div>
+    </footer>
     <script src="../static/scripts.js"></script>
 </body>
 </html>

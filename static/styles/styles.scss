@@ -56,6 +56,8 @@ nav {
     display: flex;
     list-style: none;
   }
+
+
   a {
     font-size: 0.8rem;
     color:var(--font-primary);
@@ -66,11 +68,16 @@ nav {
     letter-spacing: 1px;
     padding: 10px 25px;
     border-radius: 20px;
-    }
+  }
 
   a:hover {
+    cursor: pointer;
     color: var(--button-background);
     background-color: var(--second-color);
+  }
+
+  #hbnb-logo:hover {
+    background-color: transparent;
   }
 
   #login-link {
@@ -82,7 +89,6 @@ nav {
   }
 
   #login-link:hover {
-    color: #ffffff;
     background-color: #c85e0d;
   }
 
@@ -154,7 +160,7 @@ footer {
     }
 
   a:hover {
-    color: var(--link-color);
+    color: var(--button-background);
   }
 
   p {

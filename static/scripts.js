@@ -23,7 +23,6 @@ axios.get('http://0.0.0.0:5000/api/v1/places/', {
 .then(response => {
   console.log('Fetched data:', response.data);
   const places = response.data;
-  console.log('Places:', places);
 })
 .catch(error => {
   console.error('Error fetching data:', error);

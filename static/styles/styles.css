@@ -54,8 +54,12 @@ nav a {
   border-radius: 20px;
 }
 nav a:hover {
+  cursor: pointer;
   color: var(--button-background);
   background-color: var(--second-color);
+}
+nav #hbnb-logo:hover {
+  background-color: transparent;
 }
 nav #login-link {
   font-size: 0.8rem;
@@ -126,7 +130,7 @@ footer a {
   transition: all 300ms ease-in-out;
 }
 footer a:hover {
-  color: var(--link-color);
+  color: var(--button-background);
 }
 footer p {
   font-size: 0.9rem;

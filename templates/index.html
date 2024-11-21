@@ -11,18 +11,17 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <header>
-        <nav>
-          <img id="hbnb_logo" src="../static/assets/logo.png" alt="logo">
-          <ul>
-            <li><a href="./index.html">INDEX</a></li>
-            <li><a href="places.html">PLACES</a></li>
-            <li><a href="places.html">CONTACT US</a></li>
-            <li><a href="login.html" id="login-link">LOGIN</a></li>
-          </ul>
-            <!-- search box -->
-        </nav>
-    </header>
+  <header>
+      <nav>
+        <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
+        <ul>
+          <!-- <li><a href="/">INDEX</a></li> -->
+          <li><a href="/add_review">ADD REVIEW</a></li>
+          <li><a href="/contact">CONTACT US</a></li>
+          <li><a href="/login" id="login-link">LOGIN</a></li>
+        </ul>
+      </nav>
+  </header>
     <main>
       <!-- banner -->
       <div id="banner">
@@ -30,11 +29,11 @@
       </div>
       <section id="filter">
           <label for="price-filter">Max Price:</label>
-          <select id="price-filter">
+          <select id="price-filter"></select>
           <input id="seach-box" type="search" id="site-search" name="q" placeholder="farmhouse..."/>
           <button id="search-btn">Search</button>
               <!-- Options will be populated dynamically -->
-          </select>
+
       </section>
       <section id="places-list">
         <div class="places-container">
@@ -46,18 +45,19 @@
                       <i class="fa-regular fa-heart"></i>
                       <img class="place-photo" src="https://media.gq.com/photos/66019f02c081abc36b271454/16:9/w_1280,c_limit/airbnb-art.jpg" alt="random_place_photo">
                     </div>
+                    <h2><i class="fa-solid fa-house-chimney"></i> {{ place.title }}</h2>
                     <div class="place-detail-box">
                       <div class="des-box">
-                        <h2><i class="fa-solid fa-house-chimney"></i> {{ place.title }}</h2>
-                        <p><strong>Description:</strong> {{ place.description }}</p>
-                        <p><strong>Latitude:</strong> {{ place.latitude }} <i class="fa-solid fa-location-dot"></i></p>
-                        <p><strong>Longitude:</strong> {{ place.longitude }} <i class="fa-solid fa-location-dot"></i></p>
+                        <p><i class="fa-solid fa-location-dot"></i><strong>Latitude:</strong> {{ place.latitude }}</p>
+                        <p><i class="fa-solid fa-location-dot"></i><strong>Longitude:</strong> {{ place.longitude }}</p>
+                        <p><i class="fa-solid fa-dollar-sign"></i><strong>Price:</strong> {{ place.price }}</p>
                       </div>
                       <div class="rating-box">
-                        <!-- javascript -->
+                        <!-- javascript average rating -->
                         <p>Rating: <span style="color:rgb(255, 212, 19); "class="fa fa-star"></span><span style="color:rgb(255, 212, 19); "class="fa fa-star"></span></p>
                       </div>
                       </div>
+                      <a href="{{ url_for('place_page', place_id=place.id) }}">More details</a>
                     </div>
               {% endfor %}
           {% else %}

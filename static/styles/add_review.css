@@ -1,0 +1,39 @@
+:root {
+  --firt-color: #a4cbc9;
+  --second-color: #3c3c46;
+  --link-color: #a4b6c2;
+  --hover-color: #f5b56c;
+  --base-color: #e1e1db;
+  --button-background: #f37a1f;
+  --bg-color: #f4f4f4;
+  --font-primary: #474040;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+main .review-box {
+  width: 400px;
+}
+main .review-box #review-photo {
+  width: 400px;
+}
+main .review-box form {
+  display: flex;
+  flex-direction: column;
+}
+main .review-box form h2 {
+  text-align: center;
+}
+main .review-box form input {
+  padding: 2px 5px;
+}
+main .review-box form textarea {
+  height: 120px;
+  padding: 5px 5px;
+}
+
+/*# sourceMappingURL=add_review.css.map */

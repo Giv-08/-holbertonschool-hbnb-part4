@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+
+:root {
+  // --first-color: #5cbdb9;
+  --first-color: #a4cbc9;
+  --second-color: #3c3c46;
+  --link-color: #a4b6c2;
+  --hover-color: #f5b56c;
+  --base-color: #e1e1db;
+  --button-background: #f37a1f;
+  --bg-color: #f4f4f4;
+  --font-primary: #474040;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  #place-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    #detail-box {
+      margin: 5rem 0;
+      background-color: var(--base-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+      border-radius: 15px;
+
+      h1 {
+        letter-spacing: 2px;
+        margin: 1rem;
+      }
+
+      p {
+        line-height: 1.4rem;
+      }
+
+      #review-btn {
+        padding: 5px 20px;
+        background-color: var(--button-background);
+        border-radius: 15px;
+        text-decoration: none;
+        color: var(--white);
+        margin: 1.5rem;
+        transition: all 350ms ease-in-out;
+      }
+
+      #review-btn:hover {
+        cursor: pointer;
+        background-color: #c85e0d;
+      }
+    }
+
+    #places-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      justify-items: center;
+      gap: 2rem;
+
+      .place-card {
+        background-color: var(--second-color);
+      }
+    }
+    .place-photo {
+      width: 450px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    margin: 1rem 0 4rem;
+  }
+
+  #review-section {
+    padding: 0 2rem 5rem;
+    .review-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4rem;
+
+      .review {
+        height: 280px;
+        background-color: antiquewhite;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+
+        .avatar {
+          position: relative;
+          margin: 1.5rem;
+          border-radius: 50%;
+        }
+
+        p {
+          line-height: 40px;
+        }
+        .author {
+          font-family: 'Lobster', cursive;
+          letter-spacing: px;
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+}

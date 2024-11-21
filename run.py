@@ -18,7 +18,8 @@ import requests
 # app = create_app()
 
 app = Flask(__name__)
-@app.route('/')
+
+@app.route('/') # url = http://0.0.0.0:5000/
 def index():
     try:
         response = requests.get('http://0.0.0.0:5000/api/v1/places/')
@@ -32,6 +33,56 @@ def index():
         places = []
 
     return render_template('index.html', places=places)
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/place/<place_id>')
+def place_page(place_id):
+    try:
+        # Fetch the place data
+        place_response = requests.get(f'http://0.0.0.0:5000/api/v1/places/{place_id}')
+        if place_response.status_code == 200:
+            place = place_response.json()
+            print("Fetched place data:", place)
+        else:
+            place = {}  # Handle error case for place
+
+        # Fetch reviews data
+        reviews_response = requests.get(f'http://0.0.0.0:5000/api/v1/reviews/{place_id}')
+        if reviews_response.status_code == 200:
+            reviews = reviews_response.json()
+        else:
+            reviews = []  # Handle error case for reviews
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        place = {}
+        reviews = []
+
+    return render_template('place.html', place=place, reviews=reviews)
+
+
+@app.route('/add_review/<place_id>')
+def add_review(place_id):
+    try:
+        # need to specify id for specific place
+        response = requests.get(f'http://0.0.0.0:5000/api/v1/places/{place_id}')
+        if response.status_code == 200:
+            place = response.json()
+            print("Fetched data:", place)
+            print("Fetched amenities:", place.amenities)
+        else:
+            place = {}
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        place = {}
+
+    return render_template('add_review.html', place=place)
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 # Need to add CORS so that we can do API calls in Part 4
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})

@@ -1,0 +1,42 @@
+:root {
+  // --first-color: #5cbdb9;
+  --firt-color: #a4cbc9;
+  --second-color: #3c3c46;
+  --link-color: #a4b6c2;
+  --hover-color: #f5b56c;
+  --base-color: #e1e1db;
+  --button-background: #f37a1f;
+  --bg-color: #f4f4f4;
+  --font-primary: #474040;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  .review-box {
+    width: 400px;
+
+    #review-photo {
+      width: 400px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      h2 {
+        text-align: center;
+      }
+
+      input {
+        padding: 2px 5px;
+      }
+
+      textarea {
+        height: 120px;
+        padding: 5px 5px;
+      }
+    }
+  }
+
+}

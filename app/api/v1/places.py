@@ -130,6 +130,16 @@ class PlaceResource(Resource):
                 'name': amenity.name
             })
 
+        reviews_list = []
+        for review in place.reviews_r:
+            author = review.author_r
+            reviews_list.append({
+                'review': review.text,
+                'rating': review.rating,
+                'author': f"{author.first_name} {author.last_name}",
+                'owner': author.email
+            })
+
         output = {
             'place_id': str(place.id),
             'title': place.title,
@@ -142,7 +152,8 @@ class PlaceResource(Resource):
                 'last_name': owner.last_name,
                 'email': owner.email
             },
-            'amenities': amenities_list
+            'amenities': amenities_list,
+            'reviews': reviews_list
         }
         return output, 200
 
