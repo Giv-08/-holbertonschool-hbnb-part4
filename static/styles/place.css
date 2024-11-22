@@ -10,6 +10,7 @@
   --font-primary: #474040;
   --white: #ffffff;
   --black: #000000;
+  --box-shadow: #b8b8b8 2px 2px 2px;
 }
 
 h1 {
@@ -22,21 +23,70 @@ main #place-section {
   align-items: center;
   flex-direction: column;
 }
+main #place-section .pic-box {
+  display: flex;
+  gap: 10px;
+}
+main #place-section .pic-box .place-photo {
+  width: 700px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+main #place-section .pic-box .pic-second-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main #place-section .pic-box .pic-second-box img.side-pic {
+  width: 400px;
+}
 main #place-section #detail-box {
   margin: 5rem 0;
-  background-color: var(--base-color);
+  padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
   border-radius: 15px;
+  box-shadow: #cacaca 0px 1px 10px 0px;
 }
 main #place-section #detail-box h1 {
   letter-spacing: 2px;
-  margin: 1rem;
+  margin: 1rem 1rem 0.5rem;
+  color: var(--first-color);
+}
+main #place-section #detail-box #host-box {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 0;
+}
+main #place-section #detail-box #host-box #host-avatar {
+  border-radius: 50%;
+  margin-right: 1.5rem;
+}
+main #place-section #detail-box #host-box #host-avatar:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+main #place-section #detail-box #price-field {
+  font-size: 1.4rem;
+  color: var(--button-background);
+}
+main #place-section #detail-box #description {
+  margin-top: 1.5rem;
 }
 main #place-section #detail-box p {
-  line-height: 1.4rem;
+  line-height: 1.7rem;
+}
+main #place-section #detail-box i {
+  margin: 5px;
+}
+main #place-section #detail-box .icons-home {
+  display: grid;
+  justify-items: center;
+  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
+  margin: 10px;
 }
 main #place-section #detail-box #review-btn {
   padding: 5px 20px;
@@ -46,10 +96,15 @@ main #place-section #detail-box #review-btn {
   color: var(--white);
   margin: 1.5rem;
   transition: all 350ms ease-in-out;
+  box-shadow: var(--box-shadow);
 }
 main #place-section #detail-box #review-btn:hover {
   cursor: pointer;
   background-color: #c85e0d;
+  box-shadow: #b8b8b8 4px 4px 4px;
+}
+main #place-section #detail-box .amenity-box ul {
+  list-style: none;
 }
 main #place-section #places-list {
   display: grid;
@@ -59,11 +114,6 @@ main #place-section #places-list {
 }
 main #place-section #places-list .place-card {
   background-color: var(--second-color);
-}
-main #place-section .place-photo {
-  width: 450px;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
 }
 main h2 {
   text-align: center;
@@ -96,8 +146,12 @@ main #review-section .review-box .review p {
 }
 main #review-section .review-box .review .author {
   font-family: "Lobster", cursive;
-  letter-spacing: px;
-  font-size: 1.3rem;
+  letter-spacing: 2px;
+  font-size: 1.6rem;
+}
+main #review-section .review-box .review .quote {
+  color: #f37a1f;
+  margin: 5px;
 }
 
 /*# sourceMappingURL=place.css.map */

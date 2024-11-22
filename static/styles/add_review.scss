@@ -10,31 +10,82 @@
   --font-primary: #474040;
   --white: #ffffff;
   --black: #000000;
+  --box-shadow:#b8b8b8 2px 2px 2px;
 }
 
 main {
   display: flex;
   justify-content: center;
   .review-box {
-    width: 400px;
+    width: 500px;
+    padding: 2rem;
+    background-color: #e5e5dc;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
 
     #review-photo {
-      width: 400px;
+      width: 250px;
+      border-radius: 15px;
     }
     form {
       display: flex;
       flex-direction: column;
+
       h2 {
         text-align: center;
+        margin: 2rem 2rem 1rem;
+      }
+
+      label {
+        margin: 10px 0px;
       }
 
       input {
-        padding: 2px 5px;
+        text-align: center;
+        padding: 7px 0px;
+        border: none;
+        border-radius: 15px;
+        border-bottom: 1px solid #a3a3a3;
+        background-color: rgba(199, 198, 198, 0.234);
       }
 
       textarea {
+        border-radius: 15px;
+        text-align: center;
         height: 120px;
         padding: 5px 5px;
+        border: none;
+        background-color: rgba(199, 198, 198, 0.234);
+      }
+
+      select {
+        background-color: transparent;
+        border: #aeaeae solid 1px;
+        padding: 3px;
+        border-radius: 15px;
+
+        option {
+          text-align: center;
+        }
+      }
+
+      #submit-btn {
+        margin: 1rem 0;
+        padding: 5px 10px;
+        border: none;
+        background-color: var(--button-background);
+        color: var(--white);
+        border-radius: 15px;
+        transition: all 350ms ease-in-out;
+      }
+
+      #submit-btn:hover {
+        cursor: pointer;
+        background-color: #c85e0d;
+        box-shadow: #b8b8b8 4px 4px 4px;
       }
     }
   }

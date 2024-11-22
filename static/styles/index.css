@@ -9,6 +9,7 @@
   --font-primary: #474040;
   --white: #ffffff;
   --black: #000000;
+  --box-shadow:#b8b8b8 2px 2px 2px;
 }
 
 main #banner img {
@@ -74,6 +75,22 @@ main section .places-container .place-item {
   align-items: center;
   border-radius: 15px;
   align-items: flex-start;
+  box-shadow: #b1b1b1 0px 0px 5px 0px;
+  padding: 1rem;
+  transition: all 300ms ease-in-out;
+}
+main section .places-container .place-item #detail-btn {
+  color: var(--white);
+  padding: 5px 20px;
+  background-color: var(--button-background);
+  border-radius: 15px;
+  text-decoration: none;
+  transition: all 350ms ease-in-out;
+  box-shadow: var(--box-shadow);
+}
+main section .places-container .place-item #detail-btn:hover {
+  background-color: #c85e0d;
+  box-shadow: #b8b8b8 4px 4px 4px;
 }
 main section .places-container .place-item h2 {
   font-size: 1rem;
@@ -91,7 +108,12 @@ main section .places-container .place-item .place-detail-box {
 }
 main section .places-container .place-item .place-detail-box .rating-box {
   display: flex;
-  align-items: flex-end;
+  gap: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+}
+main section .places-container .place-item .place-detail-box .rating-box .rating-star {
+  margin: 1px;
 }
 main section .places-container .place-item .place-detail-box p {
   font-size: 0.95rem;
@@ -102,6 +124,10 @@ main section .places-container .place-item .place-detail-box i {
 }
 main section .places-container .place-card {
   background-color: var(--second-color);
+}
+main section .place-item:hover {
+  transform: translateY(-10px);
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=index.css.map */

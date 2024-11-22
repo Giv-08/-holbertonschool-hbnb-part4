@@ -12,6 +12,7 @@
   --font-primary: #474040;
   --white: #ffffff;
   --black: #000000;
+  --box-shadow: #b8b8b8 2px 2px 2px;
 }
 
 h1 {
@@ -25,22 +26,82 @@ main {
     align-items: center;
     flex-direction: column;
 
+    .pic-box {
+      display: flex;
+      gap: 10px;
+
+      .place-photo {
+        width: 700px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+      }
+
+      .pic-second-box {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        img.side-pic {
+          width: 400px;
+        }
+      }
+    }
+
     #detail-box {
       margin: 5rem 0;
-      background-color: var(--base-color);
+      padding: 2rem 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       box-sizing: border-box;
       border-radius: 15px;
+      box-shadow: #cacaca 0px 1px 10px 0px;
+
 
       h1 {
         letter-spacing: 2px;
-        margin: 1rem;
+        margin: 1rem 1rem 0.5rem;
+        color: var(--first-color);
+      }
+
+      #host-box {
+        display: flex;
+        align-items: center;
+        margin: 1rem 0 0;
+
+        #host-avatar {
+          border-radius: 50%;
+          margin-right: 1.5rem;
+        }
+
+        #host-avatar:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+
+      #price-field {
+        font-size: 1.4rem;
+        color: var(--button-background);
+      }
+
+      #description {
+        margin-top: 1.5rem;
       }
 
       p {
-        line-height: 1.4rem;
+        line-height: 1.7rem;
+      }
+
+      i {
+        margin: 5px;
+      }
+
+      .icons-home {
+        display: grid;
+        justify-items: center;
+        gap: 4rem;
+        grid-template-columns: 1fr 1fr;
+        margin: 10px;
       }
 
       #review-btn {
@@ -51,11 +112,23 @@ main {
         color: var(--white);
         margin: 1.5rem;
         transition: all 350ms ease-in-out;
+        box-shadow: var(--box-shadow);
       }
 
       #review-btn:hover {
         cursor: pointer;
         background-color: #c85e0d;
+        box-shadow: #b8b8b8 4px 4px 4px;
+      }
+
+      .amenity-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        ul {
+          list-style: none;
+        }
       }
     }
 
@@ -68,11 +141,6 @@ main {
       .place-card {
         background-color: var(--second-color);
       }
-    }
-    .place-photo {
-      width: 450px;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
     }
   }
 
@@ -108,8 +176,13 @@ main {
         }
         .author {
           font-family: 'Lobster', cursive;
-          letter-spacing: px;
-          font-size: 1.3rem;
+          letter-spacing: 2px;
+          font-size: 1.6rem;
+        }
+
+        .quote {
+          color:#f37a1f;
+          margin: 5px;
         }
       }
     }

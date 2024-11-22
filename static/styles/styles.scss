@@ -24,6 +24,7 @@
   --font-primary: #474040;
   --white: #ffffff;
   --black: #000000;
+  --box-shadow:#b8b8b8 2px 2px 2px;
 }
 
 html {
@@ -86,10 +87,13 @@ nav {
     border-radius: 20px;
     color: var(--white);
     background-color: var(--button-background);
+    box-shadow: var(--box-shadow);
   }
 
   #login-link:hover {
+    cursor: pointer;
     background-color: #c85e0d;
+    box-shadow: #b8b8b8 4px 4px 4px;
   }
 
   img#hbnb_logo {
@@ -118,6 +122,7 @@ footer {
       letter-spacing: 2px;
       text-align: center;
       margin-top: 0.4rem;
+      font-family: 'Lobster', cursive;
     }
 
     ul {
