@@ -1,6 +1,11 @@
 from flask_restx import Namespace, Resource, fields
 # from app.services.facade import HBnBFacade
 from app.services import facade
+from flask import jsonify, request
+from app.models.place import Place
+from sqlalchemy import text
+from app.persistence import db_session
+
 
 api = Namespace('places', description='Place operations')
 
@@ -97,6 +102,12 @@ class PlaceList(Resource):
         output = []
 
         for place in all_places:
+            reviews = place.reviews_r
+            if reviews:
+                average = sum([review.rating for review in reviews]) / len(reviews)
+            else:
+                average = "Not Rated"
+
             output.append({
                 'id': str(place.id),
                 'title': place.title,
@@ -104,6 +115,7 @@ class PlaceList(Resource):
                 'price': place.price,
                 'latitude': place.latitude,
                 'longitude': place.longitude,
+                'average_rating': average
             })
 
         return output, 200
@@ -131,6 +143,7 @@ class PlaceResource(Resource):
             })
 
         reviews_list = []
+        ratings = []
         for review in place.reviews_r:
             author = review.author_r
             reviews_list.append({
@@ -139,10 +152,18 @@ class PlaceResource(Resource):
                 'author': f"{author.first_name} {author.last_name}",
                 'owner': author.email
             })
+            ratings.append(review.rating) # Collecting ratings for average calculation
+
+        # Calculate average rating if there are reviews
+        if ratings:
+            average_rating = sum(ratings) / len(ratings)
+        else:
+            average_rating = "Not rated"
 
         output = {
             'place_id': str(place.id),
             'title': place.title,
+            'price': place.price,
             'description': place.description,
             'latitude': place.latitude,
             'longitude': place.longitude,
@@ -153,9 +174,12 @@ class PlaceResource(Resource):
                 'email': owner.email
             },
             'amenities': amenities_list,
-            'reviews': reviews_list
+            'reviews': reviews_list,
+            'average_rating': average_rating  # Add the calculated average rating to the output
         }
+
         return output, 200
+
 
     @api.response(200, 'Place deleted successfully')
     @api.response(404, 'Place not found')
@@ -279,4 +303,40 @@ class PlaceRelations(Resource):
                     'description': place.description
                 }
             }
+        return output, 200
+########## search
+@api.route('/search')
+class PlaceSearch(Resource):
+    @api.response(200, 'Search completed')
+    @api.response(400, 'Invalid input data')
+    def post(self):
+        search = api.payload
+        name = search.get('name', '').strip()
+        price = int(search.get('price', 0))  # Default to 0 if price is not provided
+
+        # Build conditions for the query
+        q_conditions = []
+        if name:
+            q_conditions.append(f"(title LIKE '%{name}%' OR LOWER(description) LIKE '%{name}%')")
+        if price > 0:
+            q_conditions.append(f"(price BETWEEN 0 AND {price})")
+
+        # Combine conditions into SQL query
+        where_clause = f"WHERE {' AND '.join(q_conditions)}" if q_conditions else ""
+        query = f"SELECT * FROM places p {where_clause}"
+
+        # Execute query and build result
+        result = db_session.execute(text(query))
+        output = [
+            {
+                "place_id": place.id,
+                "title": place.title,
+                "description": place.description,
+                "price": place.price,
+                "latitude": place.latitude,
+                "longitude": place.longitude,
+                "owner_id": place.owner_id
+            } for place in result
+        ]
+
         return output, 200

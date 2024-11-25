@@ -1,0 +1,64 @@
+:root {
+  --firt-color: #a4cbc9;
+  --second-color: #3c3c46;
+  --link-color: #a4b6c2;
+  --hover-color: #f5b56c;
+  --base-color: #e1e1db;
+  --button-background: #f37a1f;
+  --bg-color: #f4f4f4;
+  --font-primary: #474040;
+  --white: #ffffff;
+  --black: #000000;
+  --box-shadow:#b8b8b8 2px 2px 2px;
+}
+
+#form-wrap {
+  display: flex;
+  justify-content: center;
+}
+#form-wrap #form-box {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgb(196, 196, 196) 0px 0px 5px 1px;
+  border-radius: 15px;
+  padding: 4rem;
+  padding-bottom: 2rem;
+}
+#form-wrap #form-box h1 {
+  font-family: "Lobster", cursive;
+  letter-spacing: 2px;
+  margin: 2rem;
+}
+#form-wrap #form-box #update-form {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+#form-wrap #form-box #update-form label {
+  margin: 10px 0;
+}
+#form-wrap #form-box #update-form input {
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid var(--button-background);
+}
+#form-wrap #form-box #update-form #submit-btn {
+  margin: 2rem 5rem;
+  padding: 5px;
+  background-color: var(--button-background);
+  border-radius: 15px;
+  text-decoration: none;
+  color: var(--white);
+  transition: all 350ms ease-in-out;
+  box-shadow: var(--box-shadow);
+  border: none;
+}
+#form-wrap #form-box #update-form #submit-btn:hover {
+  cursor: pointer;
+  background-color: #c85e0d;
+  box-shadow: #b8b8b8 4px 4px 4px;
+}
+
+/*# sourceMappingURL=update_place.css.map */

@@ -137,8 +137,3 @@ class Place(Base):
     def add_amenity(self, amenity):
         """Add an amenity to the place."""
         self.amenities.append(amenity)
-
-    @staticmethod
-    def place_exists(place_id):
-        """ Search through all Places to ensure the specified place_id exists """
-        # Unused - the facade get_place method will handle this

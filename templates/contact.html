@@ -11,7 +11,7 @@
 <body>
   <header>
     <nav>
-      <img id="hbnb_logo" src="../static/assets/logo.png" alt="logo">
+      <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
       <ul>
         <li><a href="/">INDEX</a></li>
         <li><a href="/login" id="login-link">LOGIN</a></li>
@@ -21,25 +21,39 @@
   </header>
   <main>
     <h1>Contact Us</h1>
+    <div id="contact-box">
+      <form action="">
+        <div id="pic-box">
+          <img src="https://png.pngtree.com/png-vector/20240607/ourmid/pngtree-vintage-floral-envelope-mail-letter-with-botanical-png-image_12616002.png" alt="mail_pic">
+        </div>
+        <label for="name">Name:</label>
+        <input type="name" placeholder="name">
+        <label for="email">Email:</label>
+        <input type="email" placeholder="email">
+        <label for="message">Message:</label>
+        <textarea type="message" placeholder=""></textarea>
+         <a id="submit-btn" href="#">Submit</a>
+      </form>
+    </div>
   </main>
   <footer>
     <div id="slogan_div">
-      <img src="../static/assets/logo.png" alt="logo">
-      <p>Your go-to platform for finding and listing amazing places to stay. Whether you're looking for a cozy cabin, a chic apartment, or a luxurious villa, HBnB has got you covered!</p>
+      <img style="width: 80px; margin-right: 20px;" id="hbnb-logo" src="../static/assets/logo.png" alt="logo">
+      <p>Your go-to platform for amazing places to stay – from cozy cabins to luxurious villas!</p>
     </div>
     <div id="social_policy">
       <div id="social">
         <h1 id="contact">Connect with us</h1>
           <ul>
-            <li>facebook</li>
-            <li>twitter</li>
-            <li>instagram</li>
+            <li><i class="fa-brands fa-facebook"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+            <li><i class="fa-brands fa-instagram"></i></li>
           </ul>
       </div>
       <div id="policy">
         <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/cookies">Cookie Policy</a></p>
-      </div>
     </div>
+  </div>
   </footer>
 </body>
 </html>

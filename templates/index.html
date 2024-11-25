@@ -6,6 +6,7 @@
     <title>HBNB</title>
     <link rel="stylesheet" href="../static/styles/index.css">
     <link rel="stylesheet" href="../static/styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -15,10 +16,13 @@
       <nav>
         <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
         <ul>
-          <!-- <li><a href="/">INDEX</a></li> -->
-          <li><a href="/add_review">ADD REVIEW</a></li>
           <li><a href="/contact">CONTACT US</a></li>
-          <li><a href="/login" id="login-link">LOGIN</a></li>
+          <!-- {% if session.get('loggedin') %} -->
+            <li><a href="#">DASHBOARD</a></li>
+            <li><a href="/logout" id="login-link">LOGOUT</a></li>
+          <!-- {% else %} -->
+            <li><a href="{{ url_for('auth_login') }}" id="login-link">LOGIN</a></li>
+          <!-- {% endif %} -->
         </ul>
       </nav>
   </header>
@@ -29,11 +33,17 @@
       </div>
       <section id="filter">
           <label for="price-filter">Max Price:</label>
-          <select id="price-filter"></select>
+          <select id="price-filter">
+            <option value="1">0 - 250</option>
+            <option value="2">250 - 500</option>
+            <option value="3">500 - 1000</option>
+            <option value="4">1000 - 3000</option>
+            <option value="5">3000 - 7000</option>
+            <option value="5">7000 - 10000</option>
+          </select>
           <input id="seach-box" type="search" id="site-search" name="q" placeholder="farmhouse..."/>
           <button id="search-btn">Search</button>
               <!-- Options will be populated dynamically -->
-
       </section>
       <section id="places-list">
         <div class="places-container">
@@ -42,10 +52,10 @@
               {% for place in places %}
                   <div class="place-item">
                     <div class="image-box">
-                      <i class="fa-regular fa-heart"></i>
                       <img class="place-photo" src="https://media.gq.com/photos/66019f02c081abc36b271454/16:9/w_1280,c_limit/airbnb-art.jpg" alt="random_place_photo">
                     </div>
                     <h2><i class="fa-solid fa-house-chimney"></i> {{ place.title }}</h2>
+                    <p><i class="fa-solid fa-quote-left quote"></i><strong>Description:</strong> {{ place.description }}<i class="fa-solid fa-quote-right quote"></i></p>
                     <div class="place-detail-box">
                       <div class="des-box">
                         <p><i class="fa-solid fa-location-dot"></i><strong>Latitude:</strong> {{ place.latitude }}</p>
@@ -53,11 +63,22 @@
                         <p><i class="fa-solid fa-dollar-sign"></i><strong>Price:</strong> {{ place.price }}</p>
                       </div>
                       <div class="rating-box">
-                        <!-- javascript average rating -->
-                        <p>Rating: <span style="color:rgb(255, 212, 19); "class="fa fa-star"></span><span style="color:rgb(255, 212, 19); "class="fa fa-star"></span></p>
+                        <!-- average rating -->
+                        <p>Rating: {{ place['average_rating'] }}</p>
+                        <p>{% for _ in range(place['average_rating']|float|int) %}
+                          <span style="color:rgb(255, 212, 19);" class="fa fa-star rating-star"></span>  <!-- Full star -->
+                        {% endfor %}
+                        {% if place['average_rating']|float % 1 >= 0.5 %}
+                            <span style="color:rgb(255, 212, 19);" class="fa fa-star-half-alt rating-star"></span>  <!-- Half star -->
+                        {% endif %}
+                        </p>
+                          </p>
+                          </p>
                       </div>
+                    </div>
+                      <div id="detail-btn-box">
+                        <a id="detail-btn" href="{{ url_for('place_page', place_id=place.id) }}">More details</a>
                       </div>
-                      <a href="{{ url_for('place_page', place_id=place.id) }}">More details</a>
                     </div>
               {% endfor %}
           {% else %}
@@ -69,8 +90,8 @@
     </main>
     <footer>
       <div id="slogan_div">
-        <img src="../static/assets/logo.png" alt="logo">
-        <p>Your go-to platform for finding and listing amazing places to stay. Whether you're looking for a cozy cabin, a chic apartment, or a luxurious villa, HBnB has got you covered!</p>
+        <img style="width: 80px; margin-right: 20px;" id="hbnb-logo" src="../static/assets/logo.png" alt="logo">
+        <p>Your go-to platform for amazing places to stay – from cozy cabins to luxurious villas!</p>
       </div>
       <div id="social_policy">
         <div id="social">

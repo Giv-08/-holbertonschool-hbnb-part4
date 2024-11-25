@@ -33,6 +33,7 @@ main #filter #price-filter {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   margin-right: 2rem;
+  padding: 0 0 0 10px;
 }
 main #filter input {
   border: none;
@@ -49,6 +50,15 @@ main #filter #search-btn {
   border-bottom-right-radius: 15px;
   background-color: var(--button-background);
   font-size: 0.8rem;
+  transition: all 250ms ease-in-out;
+  box-shadow: 0 9px #999;
+}
+main #filter #search-btn:hover {
+  cursor: pointer;
+}
+main #filter #search-btn:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 main label {
   border: 2px solid var(--primary-color);
@@ -79,7 +89,13 @@ main section .places-container .place-item {
   padding: 1rem;
   transition: all 300ms ease-in-out;
 }
-main section .places-container .place-item #detail-btn {
+main section .places-container .place-item #detail-btn-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main section .places-container .place-item #detail-btn-box #detail-btn {
   color: var(--white);
   padding: 5px 20px;
   background-color: var(--button-background);
@@ -88,7 +104,7 @@ main section .places-container .place-item #detail-btn {
   transition: all 350ms ease-in-out;
   box-shadow: var(--box-shadow);
 }
-main section .places-container .place-item #detail-btn:hover {
+main section .places-container .place-item #detail-btn-box #detail-btn:hover {
   background-color: #c85e0d;
   box-shadow: #b8b8b8 4px 4px 4px;
 }

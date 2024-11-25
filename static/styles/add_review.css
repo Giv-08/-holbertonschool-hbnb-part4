@@ -1,5 +1,5 @@
 :root {
-  --firt-color: #a4cbc9;
+  --first-color: #a4cbc9;
   --second-color: #3c3c46;
   --link-color: #a4b6c2;
   --hover-color: #f5b56c;
@@ -19,12 +19,12 @@ main {
 main .review-box {
   width: 500px;
   padding: 2rem;
-  background-color: #e5e5dc;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
+  box-shadow: #c5c5c5 0px 0px 5px 1px;
 }
 main .review-box #review-photo {
   width: 250px;

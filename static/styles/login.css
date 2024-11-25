@@ -1,0 +1,84 @@
+:root {
+  --first-color: #a4cbc9;
+  --second-color: #3c3c46;
+  --link-color: #a4b6c2;
+  --hover-color: #f5b56c;
+  --base-color: #e1e1db;
+  --button-background: #f37a1f;
+  --bg-color: #f4f4f4;
+  --font-primary: #474040;
+  --white: #ffffff;
+  --black: #000000;
+  --box-shadow:#b8b8b8 2px 2px 2px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main #login-box {
+  display: flex;
+  align-items: center;
+  margin: 2rem;
+  box-shadow: grey 1px 2px 8px 1px;
+  width: fit-content;
+  border-radius: 15px;
+}
+main #login-box #pic {
+  width: 300px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+main #login-box #login-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 2rem;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+main #login-box #login-form h2 {
+  text-align: center;
+  margin: 1rem;
+  font-family: "Lobster", cursive;
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+main #login-box #login-form label {
+  margin: 10px 0;
+  letter-spacing: 2px;
+}
+main #login-box #login-form input {
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--button-background);
+}
+main #login-box #login-form #login-submit {
+  margin: 2rem;
+  padding: 5px 20px;
+  background-color: var(--button-background);
+  border-radius: 15px;
+  text-decoration: none;
+  color: var(--white);
+  margin: 1.5rem;
+  transition: all 350ms ease-in-out;
+  box-shadow: var(--box-shadow);
+  border: none;
+}
+main #login-box #login-form #login-submit:hover {
+  cursor: pointer;
+  background-color: #c85e0d;
+  box-shadow: #b8b8b8 4px 4px 4px;
+}
+main span {
+  text-align: center;
+}
+main span a {
+  text-decoration: none;
+  color: rgb(112, 185, 206);
+  text-shadow: rgb(255, 255, 255) 1px 1px 0px;
+}
+
+/*# sourceMappingURL=login.css.map */

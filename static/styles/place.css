@@ -37,12 +37,17 @@ main #place-section .pic-box .pic-second-box {
   flex-direction: column;
   gap: 10px;
 }
-main #place-section .pic-box .pic-second-box img.side-pic {
+main #place-section .pic-box .pic-second-box img.side-pic-top {
   width: 400px;
+  border-top-right-radius: 15px;
+}
+main #place-section .pic-box .pic-second-box img.side-pic-bottom {
+  width: 400px;
+  border-bottom-right-radius: 15px;
 }
 main #place-section #detail-box {
   margin: 5rem 0;
-  padding: 2rem 3rem;
+  padding: 2rem 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +93,7 @@ main #place-section #detail-box .icons-home {
   grid-template-columns: 1fr 1fr;
   margin: 10px;
 }
-main #place-section #detail-box #review-btn {
+main #place-section #detail-box #review-btn, main #place-section #detail-box #edit-btn {
   padding: 5px 20px;
   background-color: var(--button-background);
   border-radius: 15px;
@@ -98,10 +103,15 @@ main #place-section #detail-box #review-btn {
   transition: all 350ms ease-in-out;
   box-shadow: var(--box-shadow);
 }
-main #place-section #detail-box #review-btn:hover {
+main #place-section #detail-box #review-btn:hover, main #place-section #detail-box #edit-btn:hover {
   cursor: pointer;
   background-color: #c85e0d;
   box-shadow: #b8b8b8 4px 4px 4px;
+}
+main #place-section #detail-box .amenity-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 main #place-section #detail-box .amenity-box ul {
   list-style: none;

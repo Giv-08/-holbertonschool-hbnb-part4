@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sign-up</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/styles/styles.css">
     <link rel="stylesheet" href="../static/styles/login.css">
@@ -14,27 +14,23 @@
       <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
       <ul>
         <li><a href="#">CONTACT US</a></li>
-        <!-- <li><a href="/login" id="login-link">LOGIN</a></li> -->
+        <li><a href="/login" id="login-link">LOGIN</a></li>
       </ul>
-        <!-- search box -->
     </nav>
   </header>
-  <!-- Create a login form with fields for email and password -->
     <main>
       <div id="login-box">
-        <img id="pic" src="https://www.travelmoneyoz.com/sites/v1.travelmoneyoz.com/files/travel-money-oz-paris.jpg" alt="">
-        <form id="login-form" method="POST" action="/login">
-            {% if error %}
-              <h2 id="error-message" style="color: red">Wrong email or password</h2>
-            {% endif %}
-              <h2>Login</h2>
+        <form id="login-form" method="POST" action="/sign_up">
+              <h2>Sign up</h2>
+              <label for="first_name">First name:</label>
+              <input type="first_name" id="first_name" name="first_name" required>
+              <label for="last_name">Last name:</label>
+              <input type="last_name" id="last_name" name="last_name" required>
               <label for="email">Email:</label>
               <input type="email" id="email" name="email" required>
-
               <label for="password">Password:</label>
               <input type="password" id="password" name="password" required>
               <button id="login-submit" type="submit">Login</button>
-              <span>No account? <a href="{{ url_for('sign_up') }}">Sign up here</a></span>
         </form>
       </div>
       <img src="https://static.vecteezy.com/system/resources/thumbnails/049/106/494/small/delicate-blooms-with-a-transparent-background-png.png" alt="">

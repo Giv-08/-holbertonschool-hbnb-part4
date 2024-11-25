@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../static/styles/place.css">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>Place</title>
 </head>
@@ -17,7 +18,12 @@
       <ul>
         <!-- <li><a href="/">INDEX</a></li> -->
         <li><a href="/contact">CONTACT US</a></li>
-        <li><a href="/login" id="login-link">LOGIN</a></li>
+          <!-- {% if session.get('loggedin') %} -->
+          <li><a href="#">DASHBOARD</a></li>
+            <li><a href="{{ url_for('index') }}" id="login-link">LOGOUT</a></li>
+          <!-- {% else %} -->
+            <li><a href="/login" id="login-link">LOGIN</a></li>
+          <!-- {% endif %} -->
       </ul>
     </nav>
   </header>
@@ -26,24 +32,73 @@
       <!-- Place details will be populated dynamically -->
       <!-- place detail section -->
       <section id="place-section">
-        <div id="detail-box">
+        <div class="pic-box">
           <img class="place-photo" src="https://media.gq.com/photos/66019f02c081abc36b271454/16:9/w_1280,c_limit/airbnb-art.jpg" alt="random_place_photo">
-          <h1>{{ place['title'] }}</h1>
-          <p><strong>Description:</strong> {{ place['description'] }}</p>
-          <p><i class="fa-solid fa-dollar-sign"></i><strong>Price:</strong> ${{ place['price'] }}</p>
+          <div class="pic-second-box">
+            <img class="side-pic-top" src="https://decoholic.org/wp-content/uploads/2012/11/modern_wood_house_interior_design_by_Gianluca_Fanetti.jpg" alt="">
+            <img class="side-pic-bottom" src="https://www.idesignarch.com/wp-content/uploads/Sebastopol-Wood-House_1.jpg" alt="">
+          </div>
+        </div>
+        <div id="detail-box">
+          <h1><i class="fa-solid fa-house"></i> {{ place['title'] }}</h1>
+          <p id="price-field">${{ place['price'] }}</p>
+          <div id="host-box">
+            <img id="host-avatar" src="https://i.pravatar.cc/50?u={{ range(1,70) | random }}" alt="host-avatar">
+            <p><strong>Hosted by:</strong> {{ place.owner['first_name'] }}</p>
+          </div>
+          <div class="rating-box">
+            <!-- average rating -->
+            <p>
+                {% for _ in range(place['average_rating']|float|int) %}
+                    <span style="color:rgb(255, 212, 19);" class="fa fa-star rating-star"></span>  <!-- Full star -->
+                {% endfor %}
+
+                {% if place['average_rating']|float % 1 >= 0.5 %}
+                    <span style="color:rgb(255, 212, 19);" class="fa fa-star-half-alt rating-star"></span>  <!-- Half star -->
+                {% endif %}
+            </p>
+        </div>
+          <p id="description"><strong>Description:</strong> {{ place['description'] }}</p>
           <p><i class="fa-solid fa-location-dot"></i><strong>Latitude:</strong> {{ place['latitude'] }}</p>
           <p><i class="fa-solid fa-location-dot"></i><strong>Longitude:</strong> {{ place['longitude'] }}</p>
-          <p><strong>Amenity:</strong></p>
-        {% if place.amenities %}
-        {% for amenity in place.amenities %}
-          <ul>
-            <li>{{ amenity.name }}</li>
-          </ul>
-          {% endfor %}
-        {% else %}
-          <p>No amenities listed for this place.</p>
-        {% endif %}
-          <a id="review-btn" href="{{ url_for('add_review', place_id=place['place_id']) }}">Add a review</a>
+          <!-- rooms -->
+          <section class="icons-home">
+            <div class="name-icon">
+              <span><strong>Bedroom</strong></span>
+              <div class="icon">
+                <i class="fas fa-bed"></i>
+                <span>{{ range(1,5) | random }}</span>
+              </div>
+            </div>
+            <div class="name-icon">
+              <span><strong>Bathroom</strong></span>
+              <div class="icon">
+                <i class="fas fa-sink"></i>
+                <span>{{ range(1,5) | random }}</span>
+              </div>
+            </div>
+            </section>
+          <!-- amenity box -->
+          <p id="amenity-header"><strong>Amenity:</strong></p>
+          <div class="amenity-box">
+            {% if place.amenities %}
+            {% for amenity in place.amenities %}
+              <ul>
+                <li>{{ amenity.name }}</li>
+              </ul>
+              {% endfor %}
+            {% else %}
+              <p>No amenities listed for this place.</p>
+            {% endif %}
+          </div>
+          <!-- Add this line to show the session value in your template -->
+          <!-- <p>Session loggedin: {{ session['loggedin'] if 'loggedin' in session else 'Not logged in' }}</p>
+
+          {% if session.get('loggedin') %} -->
+            <a id="edit-btn" href="{{ url_for('edit_place', place_id=place['place_id']) }}">Edit this place</a>
+          <!-- {% else %} -->
+            <a id="review-btn" href="{{ url_for('add_review', place_id=place['place_id']) }}">Add a review</a>
+          <!-- {% endif %} -->
         </div>
       </section>
         <h2>Reviews</h2>
@@ -56,34 +111,34 @@
               <div class="review">
                 <img class="avatar" src="https://i.pravatar.cc/80?u={{ range(1,70) | random }}" alt="avatar">
                 <p class="author">{{ review['author'] }}</p>
-                <p><strong>Review:</strong> {{ review['review'] }}</p>
-                <p><strong>Rating:</strong> {{ review['rating'] }}</p>
+                <p><strong>Rating:</strong> {{ ('<span style="color:rgb(255, 212, 19);" class="fa fa-star"></span>' * review['rating']) | safe }}</p>
+                <p><i class="fa-solid fa-quote-left quote"></i> {{ review['review'] }} <i class="fa-solid fa-quote-right quote"></i></p>
               </div>
             {% endfor %}
+          </div>
           {% else %}
             <p>No reviews for {{ place['title'] }}. Be the first person to review!</p>
           {% endif %}
-        </div>
       </section>
     </main>
     <footer>
       <div id="slogan_div">
-        <img src="../static/assets/logo.png" alt="logo">
-        <p>Your go-to platform for finding and listing amazing places to stay. Whether you're looking for a cozy cabin, a chic apartment, or a luxurious villa, HBnB has got you covered!</p>
+        <img style="width: 80px; margin-right: 20px;" id="hbnb-logo" src="../static/assets/logo.png" alt="logo">
+        <p>Your go-to platform for amazing places to stay – from cozy cabins to luxurious villas!</p>
       </div>
       <div id="social_policy">
         <div id="social">
           <h1 id="contact">Connect with us</h1>
             <ul>
-              <li>facebook</li>
-              <li>twitter</li>
-              <li>instagram</li>
+              <li><i class="fa-brands fa-facebook"></i></li>
+              <li><i class="fa-brands fa-twitter"></i></li>
+              <li><i class="fa-brands fa-instagram"></i></li>
             </ul>
         </div>
         <div id="policy">
           <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/cookies">Cookie Policy</a></p>
-        </div>
       </div>
+    </div>
     </footer>
     <script src="../static/scripts.js"></script>
 </body>

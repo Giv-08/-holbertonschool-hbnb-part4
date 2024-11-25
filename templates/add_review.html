@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/styles/styles.css">
   <link rel="stylesheet" href="../static/styles/add_review.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>Add Review</title>
 </head>
@@ -26,7 +28,7 @@
       <div class="review-box">
         <img id="review-photo" src="https://www.usatoday.com/gcdn/presto/2020/01/13/USAT/642c2dc8-ab33-4580-bd39-ef0c5d96abd7-Upper_Pines_Lodge_Warren_VT_1.jpg?width=700&height=467&fit=crop&format=pjpg&auto=webp" alt="place-review">
       <form id="review-form">
-        <h2>Add a Review for {{ place['title'] }}</h2>
+        <h2>Add a review for {{ place['title'] }}</h2>
         <label for="first_name">First name:</label>
         <input type="first_name" placeholder="Enter your first name" required>
         <label for="last_name">Last name:</label>
@@ -34,33 +36,37 @@
         <label for="email">Email:</label>
         <input type="email" placeholder="Enter your email" required>
         <label for="review">Your Review:</label>
-        <textarea id="review" name="review" required placeholder="Write your review"></textarea>
+        <textarea id="review" name="review" required placeholder="Write your review here"></textarea>
         <label for="rating">Rating:</label>
         <select id="rating" name="rating" required>
-            <!-- Options for rating -->
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
-        <button type="submit">Submit Review</button>
+        <button id="submit-btn" type="submit">Submit Review</button>
       </form>
     </div>
   </main>
   <footer>
     <div id="slogan_div">
-      <img src="../static/assets/logo.png" alt="logo">
-      <p>Your go-to platform for finding and listing amazing places to stay. Whether you're looking for a cozy cabin, a chic apartment, or a luxurious villa, HBnB has got you covered!</p>
+      <img style="width: 80px; margin-right: 20px;" id="hbnb-logo" src="../static/assets/logo.png" alt="logo">
+      <p>Your go-to platform for amazing places to stay – from cozy cabins to luxurious villas!</p>
     </div>
     <div id="social_policy">
       <div id="social">
         <h1 id="contact">Connect with us</h1>
           <ul>
-            <li>facebook</li>
-            <li>twitter</li>
-            <li>instagram</li>
+            <li><i class="fa-brands fa-facebook"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+            <li><i class="fa-brands fa-instagram"></i></li>
           </ul>
       </div>
       <div id="policy">
         <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/cookies">Cookie Policy</a></p>
-      </div>
     </div>
+  </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../static/scripts.js"></script>

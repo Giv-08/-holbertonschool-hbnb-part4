@@ -1,1 +1,80 @@
-<!-- only users -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/styles.css">
+  <link rel="stylesheet" href="../static/styles/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Dashboard</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
+      <ul>
+        <li><a href="/contact">CONTACT US</a></li>
+        <li><a href="/logout" id="login-link">LOGOUT</a></li>
+      </ul>
+        <!-- search box -->
+    </nav>
+</header>
+<main>
+  <!-- <h1>Welcome, {{ user['first_name'] }} {{ user['last_name'] }}</h1>
+  <section id="user-details">
+    <div id="user-box">
+      <h3>Personal details</h3>
+      <img class="avatar" src="https://i.pravatar.cc/80?u={{ range(1,70) | random }}" alt="avatar">
+      <span><strong>First name: </strong>{{ user.first_name }}</span>
+      <span><strong>Last name: </strong>{{ user.last_name }}</span>
+      <span><strong>Email: </strong>{{ user.email }}</span>
+      <a class="edit-btn" href="#">Edit your personal details</a> -->
+      <!-- reviews that user has posted and details -->
+    <!-- </div>
+  </section>
+
+  <section id="place-details">
+    <div id="place-box">
+      <h3>Properties</h3> -->
+      <!-- loop thru all properties -->
+      <!-- if user.places -->
+       <!-- for place in places -->
+      <!-- <div class="prop-card">
+        <img src="https://i.pinimg.com/736x/a3/e9/74/a3e9749dc682622ad912d77ab4910bd6.jpg" alt="prop-pic">
+        <ul>
+          <li><strong>Name: </strong></li>
+          <li><strong>Price: </strong></li>
+          <li><strong>Description: </strong></li>
+          <li><strong>Latitude: </strong></li>
+          <li><strong>Longitude: </strong></li>
+        </ul>
+        <a class="edit-btn" href="#">Edit your property details</a>
+      </div>
+    </div>
+  </section>
+  <div id="request-box"> -->
+    <!-- rental status -->
+  <!-- </div> -->
+</main>
+  <footer>
+    <div id="slogan_div">
+      <img style="width: 80px; margin-right: 20px;" id="hbnb-logo" src="../static/assets/logo.png" alt="logo">
+      <p>Your go-to platform for finding and listing amazing places to stay. Whether you're looking for a cozy cabin, a chic apartment, or a luxurious villa, HBnB has got you covered!</p>
+    </div>
+    <div id="social_policy">
+      <div id="social">
+        <h1 id="contact">Connect with us</h1>
+          <ul>
+            <li>facebook</li>
+            <li>twitter</li>
+            <li>instagram</li>
+          </ul>
+      </div>
+      <div id="policy">
+        <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/cookies">Cookie Policy</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="../static/scripts.js"></script>
+</body>
+</html>

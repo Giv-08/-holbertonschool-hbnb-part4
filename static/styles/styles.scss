@@ -45,7 +45,7 @@ body {
 
 header {
   background-color: transparent;
-  padding: 0.4rem;
+  padding: 0 2rem;
 }
 
 nav {
@@ -97,11 +97,12 @@ nav {
   }
 
   img#hbnb_logo {
-    width: 120px;
+    width: 80px;
   }
 }
 
 footer {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: absolute;
@@ -113,6 +114,15 @@ footer {
     align-items: center;
     padding: 1rem 2rem;
     text-align: center;
+
+    a#logo {
+      padding: 0;
+
+      #hbnb_logo {
+        width: 80px;
+        margin: 5px;
+      }
+    }
   }
 
   #social {

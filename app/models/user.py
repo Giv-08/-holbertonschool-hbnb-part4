@@ -41,13 +41,12 @@ class User(Base):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
-        self.password = password
         self.is_admin = is_admin
         self.places = [] # List to store user-owned places
         self.reviews = [] # List to store user-written reviews
+        self.hash_password(password)
 
-        # The method will call the setter
-        # self.hash_password(password)
+    # The method will call the setter
     @property
     def first_name(self):
         return self._first_name
@@ -113,3 +112,12 @@ class User(Base):
             self._is_admin = value
         else:
             raise ValueError("is_admin must be a boolean value")
+
+# methods
+    def hash_password(self, password):
+        """Hashes the password before storing it."""
+        self.password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+    def verify_password(self, password):
+        """Verifies if the provided password matches the hashed password."""
+        return bcrypt.check_password_hash(self.password, password)

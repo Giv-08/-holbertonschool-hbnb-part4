@@ -1,0 +1,82 @@
+:root {
+  // --first-color: #5cbdb9;
+  --firt-color: #a4cbc9;
+  --second-color: #3c3c46;
+  --link-color: #a4b6c2;
+  --hover-color: #f5b56c;
+  --base-color: #e1e1db;
+  --button-background: #f37a1f;
+  --bg-color: #f4f4f4;
+  --font-primary: #474040;
+  --white: #ffffff;
+  --black: #000000;
+  --box-shadow:#b8b8b8 2px 2px 2px;
+}
+
+main {
+  h1 {
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    letter-spacing: 2px;
+    font-size: 2.5rem;
+  }
+
+  #contact-box {
+    margin: 4rem;
+    display: flex;
+    justify-content: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 480px;
+      padding: 3rem 4rem;
+      box-shadow: grey 0px 0px 5px 1px;
+      border-radius: 15px;
+
+      label {
+        margin: 10px 0;
+      }
+
+      input {
+        padding: 5px;
+        border: none;
+        border-bottom: 1px solid var(--button-background);
+      }
+
+      textarea {
+        height: 100px;
+        border: 1px solid var(--button-background);
+      }
+
+      #pic-box {
+        display: flex;
+        justify-content: center;
+
+        img {
+          width: 130px;
+          margin-bottom: 2rem;
+        }
+      }
+
+      a#submit-btn {
+        letter-spacing: 2px;
+        text-decoration: none;
+        text-align: center;
+        margin: 2rem;
+        font-size: 1rem;
+        padding: 10px 25px;
+        border-radius: 20px;
+        color: var(--white);
+        background-color: var(--button-background);
+        box-shadow: var(--box-shadow);
+      }
+
+      a#submit-btn:hover {
+        cursor: pointer;
+        background-color: #c85e0d;
+        box-shadow: #b8b8b8 4px 4px 4px;
+      }
+    }
+  }
+}

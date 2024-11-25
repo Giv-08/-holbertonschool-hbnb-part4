@@ -40,15 +40,22 @@ main {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        img.side-pic {
+
+        img.side-pic-top {
           width: 400px;
+          border-top-right-radius: 15px;
+        }
+
+        img.side-pic-bottom {
+          width: 400px;
+          border-bottom-right-radius: 15px;
         }
       }
     }
 
     #detail-box {
       margin: 5rem 0;
-      padding: 2rem 3rem;
+      padding: 2rem 6rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -104,7 +111,7 @@ main {
         margin: 10px;
       }
 
-      #review-btn {
+      #review-btn, #edit-btn {
         padding: 5px 20px;
         background-color: var(--button-background);
         border-radius: 15px;
@@ -115,7 +122,7 @@ main {
         box-shadow: var(--box-shadow);
       }
 
-      #review-btn:hover {
+      #review-btn:hover, #edit-btn:hover {
         cursor: pointer;
         background-color: #c85e0d;
         box-shadow: #b8b8b8 4px 4px 4px;

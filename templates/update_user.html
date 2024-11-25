@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/update_place.css">
+    <link rel="stylesheet" href="../static/styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Update personal details</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
+      <ul>
+        <li><a href="/contact">CONTACT US</a></li>
+        <!-- {% if session.get('loggedin') %} -->
+          <li><a href="#">DASHBOARD</a></li>
+          <li><a href="/logout" id="login-link">LOGOUT</a></li>
+        <!-- {% else %} -->
+          <li><a href="/login" id="login-link">LOGIN</a></li>
+        <!-- {% endif %} -->
+      </ul>
+    </nav>
+</header>
+<div id="form-wrap">
+  <div id="form-box">
+      <h1>Update personal details</h1>
+      <form id="update-form">
+        <label for="first_name">First name:</label>
+        <input type="first_name" placeholder="" required>
+        <label for="last_name">Last name:</label>
+        <input type="last_name" placeholder="" required>
+        <label for="email">Email:</label>
+        <input type="email" placeholder="@mail.com" required>
+        <button id="submit-btn" type="submit">Apply the change</button>
+      </form>
+    </div>
+  </div>
+  <footer style="bottom: 0;">
+    <div id="slogan_div">
+      <img style="width: 80px; margin-right: 20px;" id="hbnb-logo" src="../static/assets/logo.png" alt="logo">
+      <p>Your go-to platform for amazing places to stay – from cozy cabins to luxurious villas!</p>
+    </div>
+    <div id="social_policy">
+      <div id="social">
+        <h1 id="contact">Connect with us</h1>
+          <ul>
+            <li><i class="fa-brands fa-facebook"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+            <li><i class="fa-brands fa-instagram"></i></li>
+          </ul>
+      </div>
+      <div id="policy">
+        <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/cookies">Cookie Policy</a></p>
+    </div>
+  </div>
+  </footer>
+  <script src="../static/scripts.js"></script>

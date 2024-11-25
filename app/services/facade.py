@@ -15,13 +15,14 @@ class HBnBFacade:
         self.review_repo = ReviewRepository()
         self.place_repo = PlaceRepository()
         self.amenity_repo = AmenityRepository()
-        # self.amenity_repo = SQLAlchemyRepository(Amenity)
+
     # In case anyone is curious about the **
     # https://www.geeksforgeeks.org/what-does-the-double-star-operator-mean-in-python/
 
     # --- Users ---
     def create_user(self, user_data):
         user = User(**user_data)
+        # user.hash_password(user_data['password'])
         self.user_repo.add(user)
         return user
 
@@ -60,7 +61,6 @@ class HBnBFacade:
         return user.reviews_r
 
     #--- Amenities ---
-    #sed during record insertion to prevent duplicate amenities
     def get_amenity_by_name(self, name):
         return self.amenity_repo.get_by_attribute('name', name)
 
@@ -102,7 +102,7 @@ class HBnBFacade:
 
     def update_place(self, place_id, place_data):
         self.place_repo.update(place_id, place_data)
-    
+
     def delete_place(self, place_id):
         place = db_session.query(Place).get(place_id)
         if not place:
