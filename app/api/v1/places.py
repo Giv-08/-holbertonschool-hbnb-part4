@@ -317,7 +317,7 @@ class PlaceSearch(Resource):
         # Build conditions for the query
         q_conditions = []
         if name:
-            q_conditions.append(f"(title LIKE '%{name}%' OR LOWER(description) LIKE '%{name}%')")
+            q_conditions.append(f"(LOWER(title) LIKE '%{name}%' OR LOWER(description) LIKE '%{name}%')")
         if price > 0:
             q_conditions.append(f"(price BETWEEN 0 AND {price})")
 

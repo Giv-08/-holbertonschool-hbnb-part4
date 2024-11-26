@@ -21,7 +21,7 @@
             <li><a href="#">DASHBOARD</a></li>
             <li><a href="/logout" id="login-link">LOGOUT</a></li>
           <!-- {% else %} -->
-            <li><a href="{{ url_for('auth_login') }}" id="login-link">LOGIN</a></li>
+            <li><a href="{{ url_for('login') }}" id="login-link">LOGIN</a></li>
           <!-- {% endif %} -->
         </ul>
       </nav>
@@ -31,6 +31,7 @@
       <div id="banner">
         <img src="../static/assets/banner.png" alt="banner">
       </div>
+      <!-- SEARCH SECTION -->
       <section id="filter">
           <label for="price-filter">Max Price:</label>
           <select id="price-filter">

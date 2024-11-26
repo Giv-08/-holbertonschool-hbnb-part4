@@ -12,47 +12,35 @@ from flask_cors import CORS
 from flask import Flask, request, jsonify
 from app.services.facade import HBnBFacade
 import requests
+from flask import session, redirect, url_for
 import os
-from app.models.place import Place
 
 # app = create_app()
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'default_secret_key')
 facade = HBnBFacade()
-
 app.config['JWT_SECRET_KEY'] = 'malimirin1234'
 jwt = JWTManager(app)
 
-@app.route('/login')
-def login_page():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     return render_template('login.html')
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if request.method == 'POST':
-#         email = request.json.get('email', None)
-#         password = request.json.get('password', None)
-
-#         response = requests.get('http://0.0.0.0:5000/api/v1/users/')
-#         if response.status_code == 200:
-#             users = response.json()
-#             print("Fetched data:", users)
-
-#         # get user and email
-#         user = facade.get_user_by_email(email)
-
-#         if user and user._password == password:
-#             access_token = create_access_token(identity=email)
-#             session['access_token'] = access_token
-#             # return redirect(url_for('dashboard'))
-#         return jsonify({"msg": "Invalid email or password"}), 401
-#     return render_template('login.html')
 
 @app.route('/dashboard')
 def dashboard():
-    # grab user id
-    return render_template('dashboard.html')
+    user_id = session.get('user_id')  # Get user_id from the session
+    place_id = session.get('place_id')
+
+    places = None
+
+    if place_id:
+        places = facade.get_place_owner(user_id)
+    if user_id:
+        user = facade.get_user(user_id)
+        if user:
+            return render_template('dashboard.html', user=user, places=places)
+    return redirect(url_for('login'))
+
 
 @app.route('/sign_up')
 def sign_up():

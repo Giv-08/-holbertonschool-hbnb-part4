@@ -20,7 +20,7 @@
 //   }
 // })
 // .then(response => {
-//   console.log('Fetched data:', response.data);
+//   console.log('Fetched data axios:', response.data);
 //   const places = response.data;
 // })
 // .catch(error => {
@@ -67,7 +67,7 @@ document.getElementById('search-btn').addEventListener('click', function() {
 
   // Prepare the data to send in the POST request
   const data = {
-      name: searchQuery,
+      name: searchQuery, // the search input
       price: maxPrice  // Send max price for filtering
   };
 
@@ -112,7 +112,7 @@ document.getElementById('search-btn').addEventListener('click', function() {
 });
 
 // Add event listener for the 'Enter' key press in the search box
-document.getElementById('seach-box').addEventListener('keypress', function(event) {
+document.getElementById('seach-box').addEventListener('keypress', function(event) { // grab the input
   if (event.key === 'Enter') {
     document.getElementById('search-btn').click();  // Trigger the search button click event
   }

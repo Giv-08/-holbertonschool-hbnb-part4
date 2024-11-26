@@ -23,7 +23,7 @@
     <main>
       <div id="login-box">
         <img id="pic" src="https://www.travelmoneyoz.com/sites/v1.travelmoneyoz.com/files/travel-money-oz-paris.jpg" alt="">
-        <form id="login-form" method="POST" action="/login">
+        <form id="login-form" method="POST" action="/api/v1/auth/login">
             {% if error %}
               <h2 id="error-message" style="color: red">Wrong email or password</h2>
             {% endif %}
