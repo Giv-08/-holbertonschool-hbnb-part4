@@ -14,7 +14,7 @@ HBnB is a platform designed to connect property owners with potential guests, fa
 
 User Management: Allowing users to register, log into their dashboard, and give permission to specific users. 
 Place Management: Enabling hosts to list their properties with details such as description, price, and location. 
-Review System: Facilitating guest feedback through ratings and comments on their stays. 
+Review System: Facilitating guest feedback through ratings and comments on their stays and the owner cannot give a review to their own property. 
 Amenity Management: Associating various amenities with listed properties to enhance guest experiences.
 
 ### Technical Architecture 👩‍🏫 
