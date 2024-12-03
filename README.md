@@ -9,7 +9,13 @@
 ### Overview 👓
 HBnB is a platform designed to connect property owners with potential guests, facilitating short-term rentals and unique accommodation experiences. The application encompasses several key functionalities:
 
-User Management: Allowing users to register, update their profiles, and operate as either guests or hosts. Place Management: Enabling hosts to list their properties with details such as description, price, and location. Review System: Facilitating guest feedback through ratings and comments on their stays. Amenity Management: Associating various amenities with listed properties to enhance guest experiences.
+![project_4](https://github.com/user-attachments/assets/35ecd18f-6dad-4d58-9e45-a32c7d2a5eb4)
+
+
+User Management: Allowing users to register, log into their dashboard, and give permission to specific users. 
+Place Management: Enabling hosts to list their properties with details such as description, price, and location. 
+Review System: Facilitating guest feedback through ratings and comments on their stays. 
+Amenity Management: Associating various amenities with listed properties to enhance guest experiences.
 
 ### Technical Architecture 👩‍🏫 
 The HBnB application is built on a three-layered architecture, ensuring modularity, scalability, and maintainability:
