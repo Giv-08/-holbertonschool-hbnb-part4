@@ -1,5 +1,5 @@
 
-![Uploading Untitled design (2).png…]()
+![Your paragraph text](https://github.com/user-attachments/assets/64f15ab3-5561-46bf-a1e9-1949ed980742)
 
 # Holberton AirBNB Clone 🏨
 ### Diagram
