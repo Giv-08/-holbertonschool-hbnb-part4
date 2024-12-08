@@ -1,6 +1,7 @@
 from flask_restx import Namespace, Resource, fields
 # from app.services.facade import HBnBFacade
 from app.services import facade
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 api = Namespace('users', description='User operations')
 
@@ -15,6 +16,7 @@ user_model = api.model('User', {
 
 @api.route('/')
 class UserList(Resource):
+    @jwt_required()
     @api.expect(user_model)
     @api.response(201, 'User successfully created')
     @api.response(400, 'Email already registered')
@@ -134,6 +136,7 @@ class UserRelations(Resource):
                     'owner': owner.first_name,
                     'place_id': str(place.id),
                     'property_name': place.title,
+                    'price': place.price,
                     'description': place.description,
                     'latitude': place.latitude,
                     'longitude': place.longitude

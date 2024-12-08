@@ -1,6 +1,6 @@
 :root {
   // --first-color: #5cbdb9;
-  --firt-color: #a4cbc9;
+  --first-color: #a4cbc9;
   --second-color: #3c3c46;
   --link-color: #a4b6c2;
   --hover-color: #f5b56c;
@@ -39,12 +39,15 @@ main {
       }
 
       input {
+        font-size: 1rem;
         padding: 5px;
         border: none;
         border-bottom: 1px solid var(--button-background);
       }
 
       textarea {
+        font-size: 1rem;
+        padding: 5px 10px;
         height: 100px;
         border: 1px solid var(--button-background);
       }
@@ -59,20 +62,22 @@ main {
         }
       }
 
-      a#submit-btn {
+      #submit-btn {
         letter-spacing: 2px;
         text-decoration: none;
         text-align: center;
         margin: 2rem;
         font-size: 1rem;
         padding: 10px 25px;
+        border: none;
         border-radius: 20px;
         color: var(--white);
         background-color: var(--button-background);
         box-shadow: var(--box-shadow);
+        transition: all 350ms ease-in-out;
       }
 
-      a#submit-btn:hover {
+      #submit-btn:hover {
         cursor: pointer;
         background-color: #c85e0d;
         box-shadow: #b8b8b8 4px 4px 4px;

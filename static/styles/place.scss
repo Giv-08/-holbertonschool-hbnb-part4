@@ -137,6 +137,14 @@ main {
           list-style: none;
         }
       }
+
+      .message {
+        margin: 20px 0 10px;
+        padding: 10px 20px;
+        border: 1px solid var(--first-color);
+        border-radius: 15px;
+        background-color: #e4efee;
+      }
     }
 
     #places-list {

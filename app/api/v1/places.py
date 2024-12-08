@@ -5,6 +5,7 @@ from flask import jsonify, request
 from app.models.place import Place
 from sqlalchemy import text
 from app.persistence import db_session
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 api = Namespace('places', description='Place operations')
@@ -46,6 +47,7 @@ place_model = api.model('Place', {
 
 @api.route('/')
 class PlaceList(Resource):
+    @jwt_required()
     @api.expect(place_model)
     @api.response(201, 'Place successfully created')
     @api.response(400, 'Invalid input data')
@@ -56,7 +58,7 @@ class PlaceList(Resource):
         # curl -X POST "http://127.0.0.1:5000/api/v1/users/" -H "Content-Type: application/json" -d '{"first_name": "John","last_name": "Doe","email": "john.doe@example.com"}'
 
         # curl -X POST "http://127.0.0.1:5000/api/v1/places/" -H "Content-Type: application/json" -d '{"title": "Cozy Apartment","description": "A nice place to stay","price": 100.0,"latitude": 37.7749,"longitude": -122.4194,"owner_id": ""}'
-
+        current_user = get_jwt_identity()
         """Register a new place"""
         places_data = api.payload
         wanted_keys_list = ['title', 'description', 'price', 'latitude', 'longitude', 'owner_id']
@@ -69,7 +71,10 @@ class PlaceList(Resource):
         user = facade.get_user(str(places_data.get('owner_id')))
         if not user:
             return { 'error': "Invalid input data - user does not exist" }, 400
-
+        # check token
+        if user.id != current_user['id']:
+            print(f"user: {user} and current_user: {current_user}")
+            return {'error': 'Unauthorized action'}, 403
         # the try catch is here in case setter validation fails
         new_place = None
         try:
@@ -204,7 +209,7 @@ class PlaceResource(Resource):
         place_data = api.payload
         wanted_keys_list = ['title', 'description', 'price']
 
-        if len(place_data) != len(wanted_keys_list) or not all(key in wanted_keys_list for key in place_data):
+        if not all(key in place_data for key in wanted_keys_list):
             return {'error': 'Invalid input data - required attributes missing'}, 400
 
         # Check that place exists first before updating them
@@ -305,6 +310,42 @@ class PlaceRelations(Resource):
             }
         return output, 200
 ########## search
+# @api.route('/search')
+# class PlaceSearch(Resource):
+#     @api.response(200, 'Search completed')
+#     @api.response(400, 'Invalid input data')
+#     def post(self):
+#         search = api.payload
+#         name = search.get('name', '').strip()
+#         price = int(search.get('price', 0))  # Default to 0 if price is not provided
+
+#         # Build conditions for the query
+#         q_conditions = []
+#         if name:
+#             q_conditions.append(f"(LOWER(title) LIKE '%{name}%' OR LOWER(description) LIKE '%{name}%')")
+#         if price > 0:
+#             q_conditions.append(f"(price BETWEEN 0 AND {price})")
+
+#         # Combine conditions into SQL query
+#         where_clause = f"WHERE {' AND '.join(q_conditions)}" if q_conditions else ""
+#         query = f"SELECT * FROM places p {where_clause}"
+
+#         # Execute query and build result
+#         result = db_session.execute(text(query))
+#         output = [
+#             {
+#                 "place_id": place.id,
+#                 "title": place.title,
+#                 "description": place.description,
+#                 "price": place.price,
+#                 "latitude": place.latitude,
+#                 "longitude": place.longitude,
+#                 "owner_id": place.owner_id,
+#                 "average_rating": place.average_rating
+#             } for place in result
+#         ]
+
+#         return output, 200
 @api.route('/search')
 class PlaceSearch(Resource):
     @api.response(200, 'Search completed')
@@ -312,21 +353,39 @@ class PlaceSearch(Resource):
     def post(self):
         search = api.payload
         name = search.get('name', '').strip()
-        price = int(search.get('price', 0))  # Default to 0 if price is not provided
+        price = search.get('price', None)
+
+        # Validate price input
+        try:
+            price = int(price) if price else 0
+        except ValueError:
+            return {"message": "Invalid price value"}, 400
 
         # Build conditions for the query
         q_conditions = []
         if name:
-            q_conditions.append(f"(LOWER(title) LIKE '%{name}%' OR LOWER(description) LIKE '%{name}%')")
+            q_conditions.append("(LOWER(p.title) LIKE :name OR LOWER(p.description) LIKE :name)")
         if price > 0:
-            q_conditions.append(f"(price BETWEEN 0 AND {price})")
+            q_conditions.append("p.price BETWEEN 0 AND :price")
 
         # Combine conditions into SQL query
         where_clause = f"WHERE {' AND '.join(q_conditions)}" if q_conditions else ""
-        query = f"SELECT * FROM places p {where_clause}"
+        query = f"""
+            SELECT p.*,
+                   COALESCE(AVG(r.rating), 'Not Rated') AS average_rating
+            FROM places p
+            LEFT JOIN reviews r ON r.place_id = p.id
+            {where_clause}
+            GROUP BY p.id
+        """
 
-        # Execute query and build result
-        result = db_session.execute(text(query))
+        # Execute query with safe parameterized values
+        result = db_session.execute(
+            text(query),
+            {'name': f"%{name.lower()}%", 'price': price}
+        )
+
+        # Build the output
         output = [
             {
                 "place_id": place.id,
@@ -335,8 +394,10 @@ class PlaceSearch(Resource):
                 "price": place.price,
                 "latitude": place.latitude,
                 "longitude": place.longitude,
-                "owner_id": place.owner_id
-            } for place in result
+                "owner_id": place.owner_id,
+                "average_rating": place.average_rating
+            }
+            for place in result
         ]
 
         return output, 200

@@ -12,6 +12,22 @@
   --box-shadow:#b8b8b8 2px 2px 2px;
 }
 
+#flash-message {
+  display: flex;
+  justify-content: center;
+}
+#flash-message p {
+  color: #0f8bd3;
+  top: 0;
+  position: absolute;
+  text-align: center;
+  margin: 20px 0 10px;
+  padding: 10px 20px;
+  border: 1px solid #0f8bd3;
+  border-radius: 10px;
+  background-color: #c9eefc;
+}
+
 h1 {
   text-align: center;
 }
@@ -45,28 +61,45 @@ h1 {
   margin: 0 0 1.5rem;
 }
 
+h3 {
+  text-align: center;
+}
+
 #place-details {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
+  transition: all 350ms ease-in-out;
+}
+#place-details span {
+  text-align: center;
 }
 #place-details #place-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 600px;
   box-shadow: grey 0px 0px 5px 0px;
   border-radius: 15px;
   padding: 2rem;
   margin: 4rem;
 }
 #place-details #place-box .prop-card img {
-  width: 220px;
+  width: 240px;
   margin: 2rem;
   border-radius: 15px;
+}
+#place-details #place-box .prop-card ul #property-name {
+  font-size: 1.05rem;
 }
 #place-details #place-box .prop-card ul li {
   list-style: none;
   margin: 0 0 1.5rem;
+}
+#place-details #place-box .prop-card ul li i {
+  margin-right: 10px;
+}
+#place-details #place-box:hover {
+  transform: translateY(-10px);
 }
 
 .edit-btn {

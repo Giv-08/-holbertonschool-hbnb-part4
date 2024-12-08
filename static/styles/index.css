@@ -16,53 +16,97 @@ main #banner img {
   width: 100%;
 }
 main #filter {
+  color: white;
   display: flex;
   justify-content: center;
   padding: 1.5rem;
   height: 80px;
 }
 main #filter label {
-  font-size: 0.8rem;
+  color: white;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
 }
 main #filter #price-filter {
+  font-size: 0.9rem;
+  color: white;
   border: none;
-  width: 90px;
-  background-color: #e3ddd9;
+  width: 130px;
+  height: 40px;
+  background-color: var(--button-background);
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  margin-right: 2rem;
-  padding: 0 0 0 10px;
+  margin-right: 6rem;
+  text-align: center;
+}
+main #filter #price-filter:hover {
+  cursor: pointer;
+}
+main #filter #search-box::placeholder {
+  color: #ffffff;
 }
 main #filter input {
   border: none;
-  width: 200px;
-  padding-left: 1rem;
-  background-color: #e3ddd9;
+  width: 250px;
+  height: 40px;
+  text-align: center;
+  padding-left: 2rem;
+  background-color: var(--button-background);
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
 main #filter #search-btn {
+  font-size: 0.9rem;
   border: none;
-  padding: 6px 20px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  width: 65px;
+  height: 40px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   background-color: var(--button-background);
   font-size: 0.8rem;
   transition: all 250ms ease-in-out;
-  box-shadow: 0 9px #999;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+main #filter #search-btn i {
+  color: #f37a1f;
+  background-color: white;
+  border-radius: 50%;
+  padding: 15px;
+  transition: all 350ms ease-in-out;
+  border: 2px solid var(--button-background);
+}
+main #filter #search-btn i:hover {
+  color: #f5b56c;
+  border: 2px solid #f5b56c;
 }
 main #filter #search-btn:hover {
   cursor: pointer;
 }
-main #filter #search-btn:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+main #filter #reset-btn {
+  color: white;
+  margin: 0 5rem;
+  width: 50px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  transition: all 350ms ease-in-out;
+  background-color: var(--button-background);
+}
+main #filter #reset-btn i {
+  font-size: 1.2rem;
+}
+main #filter #reset-btn:hover {
+  background-color: #ffa94d;
+}
+main #filter #reset-btn:hover {
+  cursor: pointer;
 }
 main label {
   border: 2px solid var(--primary-color);
-  padding: 6px 20px;
+  padding: 20px 40px;
   color: var(--third-color);
   background-color: var(--button-background);
   border-bottom-left-radius: 15px;
@@ -89,6 +133,10 @@ main section .places-container .place-item {
   padding: 1rem;
   transition: all 300ms ease-in-out;
 }
+main section .places-container .place-item .quote {
+  margin: 0 10px;
+  color: var(--button-background);
+}
 main section .places-container .place-item #detail-btn-box {
   width: 100%;
   display: flex;
@@ -109,6 +157,7 @@ main section .places-container .place-item #detail-btn-box #detail-btn:hover {
   box-shadow: #b8b8b8 4px 4px 4px;
 }
 main section .places-container .place-item h2 {
+  margin: 10px 0;
   font-size: 1rem;
   font-weight: 500;
   line-height: 30px;

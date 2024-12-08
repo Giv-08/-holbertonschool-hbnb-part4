@@ -18,12 +18,12 @@
       <ul>
         <!-- <li><a href="/">INDEX</a></li> -->
         <li><a href="/contact">CONTACT US</a></li>
-          <!-- {% if session.get('loggedin') %} -->
-          <li><a href="#">DASHBOARD</a></li>
-            <li><a href="{{ url_for('index') }}" id="login-link">LOGOUT</a></li>
-          <!-- {% else %} -->
-            <li><a href="/login" id="login-link">LOGIN</a></li>
-          <!-- {% endif %} -->
+        {% if session.get('login') %}
+          <li><a href="/dashboard">DASHBOARD</a></li>
+          <li><a href="/logout" id="login-link">LOGOUT</a></li>
+        {% else %}
+          <li><a href="{{ url_for('login') }}" id="login-link">LOGIN</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
@@ -58,7 +58,7 @@
                 {% endif %}
             </p>
         </div>
-          <p id="description"><strong>Description:</strong> {{ place['description'] }}</p>
+          <p id="description"><strong>Description:</strong> {{ place['description'].capitalize() }}</p>
           <p><i class="fa-solid fa-location-dot"></i><strong>Latitude:</strong> {{ place['latitude'] }}</p>
           <p><i class="fa-solid fa-location-dot"></i><strong>Longitude:</strong> {{ place['longitude'] }}</p>
           <!-- rooms -->
@@ -91,14 +91,21 @@
               <p>No amenities listed for this place.</p>
             {% endif %}
           </div>
-          <!-- Add this line to show the session value in your template -->
-          <!-- <p>Session loggedin: {{ session['loggedin'] if 'loggedin' in session else 'Not logged in' }}</p>
 
-          {% if session.get('loggedin') %} -->
-            <a id="edit-btn" href="{{ url_for('edit_place', place_id=place['place_id']) }}">Edit this place</a>
-          <!-- {% else %} -->
-            <a id="review-btn" href="{{ url_for('add_review', place_id=place['place_id']) }}">Add a review</a>
-          <!-- {% endif %} -->
+          {% if session.get('login') %}
+            {% if user_id != owner.owner_id %}
+              <a id="review-btn" href="{{ url_for('add_review', place_id=place['place_id']) }}">Add a review</a>
+            {% else %}
+            <div class="message">
+              <p><i class="fa-solid fa-triangle-exclamation"></i>You cannot add a review for your own place.</p>
+            </div>
+              {% endif %}
+          {% else %}
+          <div class="message">
+            <p><i class="fa-solid fa-triangle-exclamation"></i>Please log in to add a review.</p>
+          </div>
+          {% endif %}
+
         </div>
       </section>
         <h2>Reviews</h2>
@@ -112,7 +119,7 @@
                 <img class="avatar" src="https://i.pravatar.cc/80?u={{ range(1,70) | random }}" alt="avatar">
                 <p class="author">{{ review['author'] }}</p>
                 <p><strong>Rating:</strong> {{ ('<span style="color:rgb(255, 212, 19);" class="fa fa-star"></span>' * review['rating']) | safe }}</p>
-                <p><i class="fa-solid fa-quote-left quote"></i> {{ review['review'] }} <i class="fa-solid fa-quote-right quote"></i></p>
+                <p><i class="fa-solid fa-quote-left quote"></i> {{ review['review'].capitalize() }} <i class="fa-solid fa-quote-right quote"></i></p>
               </div>
             {% endfor %}
           </div>

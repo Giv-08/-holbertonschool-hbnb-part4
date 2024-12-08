@@ -17,12 +17,12 @@
         <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
         <ul>
           <li><a href="/contact">CONTACT US</a></li>
-          <!-- {% if session.get('loggedin') %} -->
-            <li><a href="#">DASHBOARD</a></li>
+          {% if session.get('login') %}
+            <li><a href="/dashboard">DASHBOARD</a></li>
             <li><a href="/logout" id="login-link">LOGOUT</a></li>
-          <!-- {% else %} -->
+          {% else %}
             <li><a href="{{ url_for('login') }}" id="login-link">LOGIN</a></li>
-          <!-- {% endif %} -->
+          {% endif %}
         </ul>
       </nav>
   </header>
@@ -35,16 +35,16 @@
       <section id="filter">
           <label for="price-filter">Max Price:</label>
           <select id="price-filter">
-            <option value="1">0 - 250</option>
-            <option value="2">250 - 500</option>
-            <option value="3">500 - 1000</option>
-            <option value="4">1000 - 3000</option>
-            <option value="5">3000 - 7000</option>
-            <option value="5">7000 - 10000</option>
+            <option value="1">250</option>
+            <option value="2">500</option>
+            <option value="3">1000</option>
+            <option value="4">3000</option>
+            <option value="5">7000</option>
+            <option value="6">10000</option>
           </select>
-          <input id="seach-box" type="search" id="site-search" name="q" placeholder="farmhouse..."/>
-          <button id="search-btn">Search</button>
-              <!-- Options will be populated dynamically -->
+          <input id="search-box" type="search" id="site-search" name="q" placeholder="Search here..."/>
+          <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button id="reset-btn"><i style="color: white;" class="fa-solid fa-rotate-left"></i></button>
       </section>
       <section id="places-list">
         <div class="places-container">
@@ -55,8 +55,8 @@
                     <div class="image-box">
                       <img class="place-photo" src="https://media.gq.com/photos/66019f02c081abc36b271454/16:9/w_1280,c_limit/airbnb-art.jpg" alt="random_place_photo">
                     </div>
-                    <h2><i class="fa-solid fa-house-chimney"></i> {{ place.title }}</h2>
-                    <p><i class="fa-solid fa-quote-left quote"></i><strong>Description:</strong> {{ place.description }}<i class="fa-solid fa-quote-right quote"></i></p>
+                    <h2><i class="fa-solid fa-house-chimney"></i> {{ place.title.upper() }}</h2>
+                    <p><i class="fa-solid fa-quote-left quote"></i>{{ place.description.capitalize() }}<i class="fa-solid fa-quote-right quote"></i></p>
                     <div class="place-detail-box">
                       <div class="des-box">
                         <p><i class="fa-solid fa-location-dot"></i><strong>Latitude:</strong> {{ place.latitude }}</p>
@@ -65,7 +65,7 @@
                       </div>
                       <div class="rating-box">
                         <!-- average rating -->
-                        <p>Rating: {{ place['average_rating'] }}</p>
+                        <p>Rating: {{ '%.2f' % place['average_rating']|float }}</p>
                         <p>{% for _ in range(place['average_rating']|float|int) %}
                           <span style="color:rgb(255, 212, 19);" class="fa fa-star rating-star"></span>  <!-- Full star -->
                         {% endfor %}
@@ -89,7 +89,7 @@
           <!-- List of places will be populated dynamically -->
       </section>
     </main>
-    <footer>
+    <footer style="bottom: 0; position: relative;">
       <div id="slogan_div">
         <img style="width: 80px; margin-right: 20px;" id="hbnb-logo" src="../static/assets/logo.png" alt="logo">
         <p>Your go-to platform for amazing places to stay – from cozy cabins to luxurious villas!</p>
@@ -104,7 +104,7 @@
             </ul>
         </div>
         <div id="policy">
-          <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/cookies">Cookie Policy</a></p>
+          <p>&copy; 2024 HBnB, Inc. All rights reserved. | <a href="/#">Privacy Policy</a> | <a href="/#">Cookie Policy</a></p>
       </div>
     </div>
     </footer>

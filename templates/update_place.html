@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/styles/update_place.css">
     <link rel="stylesheet" href="../static/styles/styles.css">
+    <link rel="stylesheet" href="../static/styles/alert_box.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -26,21 +27,24 @@
       </ul>
     </nav>
 </header>
+<!-- Custom Confirmation Dialog -->
+
 <div id="form-wrap">
   <div id="form-box">
-      <h1>Update place details</h1>
+    {% if place %}
+      <h1>Update {{ place.title }}'s details</h1>
+    {% endif %}
+      <!-- <form id="update-form"> -->
       <form id="update-form">
         <label for="">Title:</label>
-        <input type="title" placeholder="" required>
+        <input id="title" type="title" value="{{ place.title }}" placeholder="" required>
         <label for="description">Description:</label>
-        <input type="description" placeholder="" required>
+        <input id="description" type="description" value="{{ place.description }}" placeholder="" required>
         <label for="price">Price:</label>
-        <input type="price" placeholder="$" required>
-        <label for="latitude">latitude:</label>
-        <input type="latitude" required placeholder=""></input>
-        <label for="longitude">longitude:</label>
-        <input type="longitude" required placeholder=""></input>
-        <button id="submit-btn" type="submit">Apply the change</button>
+        <input id="price" type="number" value="{{ place.price }}" placeholder="$" required>
+        <input type="hidden" id="place_id" value="{{ place.id }}">
+        <button id="submit-btn" type="submit">Update details</button>
+        <button onclick="deletePlace('{{ place.id }}')" id="delete-btn" data-place-id="{{ place.id }}"><i class="fa-solid fa-circle-xmark"></i> Delete this place</button>
       </form>
     </div>
   </div>
@@ -63,6 +67,28 @@
     </div>
   </div>
   </footer>
+  <!-- <script>
+    document.getElementById('delete-btn').addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent default behavior (if it's inside a form or link)
+
+    const placeId = this.getAttribute('data-place-id'); // Get the place id from the button data attribute
+    const confirmDelete = window.confirm("Are you sure you want to delete this place?");
+    // Make the DELETE request using Axios
+    if (confirmDelete) {
+    axios.delete(`/update_place/${placeId}`)
+      .then(function (response) {
+        console.log('Place deleted successfully:', response);
+        window.location.href = '/dashboard'; // Redirect to the dashboard after deletion
+      })
+      .catch(function (error) {
+        console.error('Error deleting the place:', error);
+        alert('Failed to delete the place. Please try again.');
+      });
+    }
+    });
+    </script> -->
+  <script src="../static/delete_place.js"></script>
+  <script src="../static/update_place.js"></script>
   <script src="../static/scripts.js"></script>
 </body>
 </html>

@@ -66,6 +66,23 @@
           background-color: #c85e0d;
           box-shadow: #b8b8b8 4px 4px 4px;
         }
+
+        #delete-btn {
+          margin: 1rem 5rem;
+          padding: 5px;
+          background-color: #ff0000;
+          border-radius: 15px;
+          text-decoration: none;
+          color: var(--white);
+          transition: all 350ms ease-in-out;
+          box-shadow: var(--box-shadow);
+          border: none;
+        }
+
+        #delete-btn:hover {
+          cursor: pointer;
+        }
+
     }
   }
 }

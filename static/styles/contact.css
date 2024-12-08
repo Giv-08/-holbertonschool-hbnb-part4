@@ -1,5 +1,5 @@
 :root {
-  --firt-color: #a4cbc9;
+  --first-color: #a4cbc9;
   --second-color: #3c3c46;
   --link-color: #a4b6c2;
   --hover-color: #f5b56c;
@@ -35,11 +35,14 @@ main #contact-box form label {
   margin: 10px 0;
 }
 main #contact-box form input {
+  font-size: 1rem;
   padding: 5px;
   border: none;
   border-bottom: 1px solid var(--button-background);
 }
 main #contact-box form textarea {
+  font-size: 1rem;
+  padding: 5px 10px;
   height: 100px;
   border: 1px solid var(--button-background);
 }
@@ -51,19 +54,21 @@ main #contact-box form #pic-box img {
   width: 130px;
   margin-bottom: 2rem;
 }
-main #contact-box form a#submit-btn {
+main #contact-box form #submit-btn {
   letter-spacing: 2px;
   text-decoration: none;
   text-align: center;
   margin: 2rem;
   font-size: 1rem;
   padding: 10px 25px;
+  border: none;
   border-radius: 20px;
   color: var(--white);
   background-color: var(--button-background);
   box-shadow: var(--box-shadow);
+  transition: all 350ms ease-in-out;
 }
-main #contact-box form a#submit-btn:hover {
+main #contact-box form #submit-btn:hover {
   cursor: pointer;
   background-color: #c85e0d;
   box-shadow: #b8b8b8 4px 4px 4px;

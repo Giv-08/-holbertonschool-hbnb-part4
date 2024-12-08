@@ -31,7 +31,7 @@ class Place(Base):
     _owner_id = Column("owner_id", String(60), ForeignKey('users.id'), nullable=False)
     amenities_r = relationship('Amenity', secondary=place_amenity, back_populates='places_r')
     owner_r = relationship("User", back_populates="properties_r")
-    reviews_r = relationship('Review', back_populates='place_r')
+    reviews_r = relationship('Review', back_populates='place_r', cascade='all, delete-orphan')
 
     def __init__(self, title, description, price, latitude, longitude, owner_id):
         if title is None or description is None or price is None or latitude is None or longitude is None or owner_id is None:
@@ -84,10 +84,15 @@ class Place(Base):
     @price.setter
     def price(self, value):
         """Setter for prop price"""
-        if isinstance(value, float) and value > 0.0:
-            self._price = value
-        else:
+        # if isinstance(value, float) and value > 0.0:
+        #     self._price = value
+        # else:
+        #     raise ValueError("Invalid value specified for price")
+        if not isinstance(value, (float, int)):  # Accepts both float and int
             raise ValueError("Invalid value specified for price")
+        if value <= 0:
+            raise ValueError("Price must be greater than 0")
+        self._price = value
 
     @property
     def latitude(self):

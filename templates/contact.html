@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="../static/styles/styles.css">
   <link rel="stylesheet" href="../static/styles/contact.css">
   <title>HBNB</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
   <header>
     <nav>
       <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
       <ul>
-        <li><a href="/">INDEX</a></li>
         <li><a href="/login" id="login-link">LOGIN</a></li>
       </ul>
         <!-- search box -->
@@ -22,18 +22,22 @@
   <main>
     <h1>Contact Us</h1>
     <div id="contact-box">
-      <form action="">
+      <form id="contact-form">
         <div id="pic-box">
-          <img src="https://png.pngtree.com/png-vector/20240607/ourmid/pngtree-vintage-floral-envelope-mail-letter-with-botanical-png-image_12616002.png" alt="mail_pic">
+            <img src="https://png.pngtree.com/png-vector/20240607/ourmid/pngtree-vintage-floral-envelope-mail-letter-with-botanical-png-image_12616002.png" alt="mail_pic">
         </div>
-        <label for="name">Name:</label>
-        <input type="name" placeholder="name">
-        <label for="email">Email:</label>
-        <input type="email" placeholder="email">
+        <label for="user_name">Name:</label>
+        <input type="text" id="user_name" name="user_name" placeholder="Your name" required>
+        <label for="user_email">Email:</label>
+        <input type="email" id="user_email" name="user_email" placeholder="Your email" required>
+        <label for="topic">Subject:</label>
+        <input type="text" id="subject" name="user_subject" placeholder="Your topic" required>
         <label for="message">Message:</label>
-        <textarea type="message" placeholder=""></textarea>
-         <a id="submit-btn" href="#">Submit</a>
-      </form>
+        <textarea id="message" name="user_message" placeholder="Your message" required></textarea>
+        <button id="submit-btn" type="submit">Submit</button>
+        <p style="text-align: center;" class="contact-message" id="contact-message"></p>
+    </form>
+
     </div>
   </main>
   <footer>
@@ -55,5 +59,7 @@
     </div>
   </div>
   </footer>
+  <script src="../static/emailjs.js"></script>
+  <script src="../static/scripts.js"></script>
 </body>
 </html>
