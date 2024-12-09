@@ -309,80 +309,45 @@ class PlaceRelations(Resource):
                 }
             }
         return output, 200
-########## search
-# @api.route('/search')
-# class PlaceSearch(Resource):
-#     @api.response(200, 'Search completed')
-#     @api.response(400, 'Invalid input data')
-#     def post(self):
-#         search = api.payload
-#         name = search.get('name', '').strip()
-#         price = int(search.get('price', 0))  # Default to 0 if price is not provided
 
-#         # Build conditions for the query
-#         q_conditions = []
-#         if name:
-#             q_conditions.append(f"(LOWER(title) LIKE '%{name}%' OR LOWER(description) LIKE '%{name}%')")
-#         if price > 0:
-#             q_conditions.append(f"(price BETWEEN 0 AND {price})")
-
-#         # Combine conditions into SQL query
-#         where_clause = f"WHERE {' AND '.join(q_conditions)}" if q_conditions else ""
-#         query = f"SELECT * FROM places p {where_clause}"
-
-#         # Execute query and build result
-#         result = db_session.execute(text(query))
-#         output = [
-#             {
-#                 "place_id": place.id,
-#                 "title": place.title,
-#                 "description": place.description,
-#                 "price": place.price,
-#                 "latitude": place.latitude,
-#                 "longitude": place.longitude,
-#                 "owner_id": place.owner_id,
-#                 "average_rating": place.average_rating
-#             } for place in result
-#         ]
-
-#         return output, 200
 @api.route('/search')
 class PlaceSearch(Resource):
     @api.response(200, 'Search completed')
     @api.response(400, 'Invalid input data')
     def post(self):
-        search = api.payload
-        name = search.get('name', '').strip()
-        price = search.get('price', None)
-
-        # Validate price input
-        try:
-            price = int(price) if price else 0
-        except ValueError:
-            return {"message": "Invalid price value"}, 400
+        # api.payload automatically parses search input and makes it accessible as a Python dictionary.
+        search = api.payload # python dict
+        name = search.get('name', '').strip() # dict >> extract values to create SQL
+        price = search.get('price', None) # dict >> extract values to create SQL
 
         # Build conditions for the query
         q_conditions = []
         if name:
-            q_conditions.append("(LOWER(p.title) LIKE :name OR LOWER(p.description) LIKE :name)")
+            q_conditions.append("(LOWER(places.title) LIKE :name OR LOWER(places.description) LIKE :name)") # convert everything to lower case
         if price > 0:
-            q_conditions.append("p.price BETWEEN 0 AND :price")
+            q_conditions.append("places.price BETWEEN 0 AND :price")
 
         # Combine conditions into SQL query
         where_clause = f"WHERE {' AND '.join(q_conditions)}" if q_conditions else ""
+        # get all places in the column (p.*).
+        # calculates the average rating for each place from the reviews table, or returns 'Not Rated'
+        # joins the places table with the reviews table to get the rating
+        # filtered based on user input (if any)
+        # the data is grouped by each place's id to ensure one result per place.
         query = f"""
-            SELECT p.*,
-                   COALESCE(AVG(r.rating), 'Not Rated') AS average_rating
-            FROM places p
-            LEFT JOIN reviews r ON r.place_id = p.id
+            SELECT places.*,
+                COALESCE(AVG(reviews.rating), 'Not Rated') AS average_rating
+            FROM places
+            LEFT JOIN reviews ON reviews.place_id = places.id
             {where_clause}
-            GROUP BY p.id
+            GROUP BY places.id
         """
 
         # Execute query with safe parameterized values
         result = db_session.execute(
+            # SQLAlchemy, and it is used to safely execute raw SQL queries in your application. When you use text(), you're telling SQLAlchemy to interpret the string inside it as raw SQL.
             text(query),
-            {'name': f"%{name.lower()}%", 'price': price}
+            {'name': f"%{name}%", 'price': price}
         )
 
         # Build the output

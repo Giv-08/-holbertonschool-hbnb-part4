@@ -17,11 +17,11 @@
         <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
         <ul>
           <li><a href="/contact">CONTACT US</a></li>
-          {% if session.get('login') %}
-            <li><a href="/dashboard">DASHBOARD</a></li>
-            <li><a href="/logout" id="login-link">LOGOUT</a></li>
+          {% if session.get('jwt_token') %}
+          <li><a href="/dashboard">DASHBOARD</a></li>
+          <li><a href="/logout" id="login-link">LOGOUT</a></li>
           {% else %}
-            <li><a href="{{ url_for('login') }}" id="login-link">LOGIN</a></li>
+          <li><a href="{{ url_for('login') }}" id="login-link">LOGIN</a></li>
           {% endif %}
         </ul>
       </nav>
@@ -89,7 +89,7 @@
           <!-- List of places will be populated dynamically -->
       </section>
     </main>
-    <footer style="bottom: 0; position: relative;">
+    <footer>
       <div id="slogan_div">
         <img style="width: 80px; margin-right: 20px;" id="hbnb-logo" src="../static/assets/logo.png" alt="logo">
         <p>Your go-to platform for amazing places to stay – from cozy cabins to luxurious villas!</p>
@@ -108,6 +108,7 @@
       </div>
     </div>
     </footer>
+    <script src="../static/log_message.js"></script>
     <script src="../static/scripts.js"></script>
 </body>
 </html>

@@ -1,5 +1,4 @@
 :root {
-  // --first-color: #5cbdb9;
   --first-color: #a4cbc9;
   --second-color: #3c3c46;
   --link-color: #a4b6c2;
@@ -14,69 +13,46 @@
 }
 
 main {
+  padding-top: 3rem;
   display: flex;
   justify-content: center;
 
-  .review-box {
-    width: 500px;
-    padding: 2rem;
-    border-radius: 15px;
+  .place-box {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: #8080807a 1px 1px 10px 1px;
+    border-radius: 15px;
     margin-bottom: 2rem;
-    box-shadow: #c5c5c5 0px 0px 5px 1px;
 
-    #review-photo {
-      width: 250px;
+    #place-photo {
+      width: 350px;
       border-radius: 15px;
     }
+
     form {
       display: flex;
       flex-direction: column;
-      width: 350px;
+      margin: 4rem 4rem 0 4rem;
 
       h2 {
+        margin: 2rem;
         text-align: center;
-        margin: 2rem 2rem 1rem;
         font-family: "Lobster", cursive;
       }
 
       label {
-        margin: 10px 0px;
+        margin-top: 1rem;
       }
 
       input {
-        text-align: center;
-        padding: 7px 0px;
         border: none;
-        border-radius: 15px;
-        border-bottom: 1px solid #a3a3a3;
-        background-color: rgba(199, 198, 198, 0.234);
-      }
-
-      textarea {
-        border-radius: 15px;
-        text-align: center;
-        height: 120px;
-        padding: 5px 5px;
-        border: none;
-        background-color: rgba(199, 198, 198, 0.234);
-      }
-
-      select {
-        background-color: transparent;
-        border: #aeaeae solid 1px;
-        padding: 3px;
-        border-radius: 15px;
-
-        option {
-          text-align: center;
-        }
+        border-bottom:1px solid var(--button-background);
+        padding: 10px 5px;
       }
 
       #submit-btn {
-        margin: 1rem 0;
+        margin: 3rem 0;
         padding: 5px 10px;
         border: none;
         background-color: var(--button-background);
@@ -92,5 +68,4 @@ main {
       }
     }
   }
-
 }

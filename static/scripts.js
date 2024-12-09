@@ -1,13 +1,3 @@
-// FLASHING LOGIN/OUT MESSAGE FOR 3 SECS
-window.onload = function() {
-  setTimeout(function() {
-      let message = document.getElementById("flash-message");
-      if (message) {
-          message.style.display = 'none';
-      }
-  }, 3000);
-};
-
 // SEARCH FUNCTION
 document.getElementById('search-btn').addEventListener('click', function() {
   const searchQuery = document.getElementById('search-box').value;
@@ -49,34 +39,49 @@ document.getElementById('search-btn').addEventListener('click', function() {
           const placesList = document.querySelector('.places-container');
           placesList.innerHTML = '';
 
-          // Populate the new places based on the response
-          response.data.forEach(function(place) {
-              const placeItem = document.createElement('div'); // create a new div
-              placeItem.classList.add('place-item'); // then add a class for div followed the existing index
+          if (response.data && response.data.length > 0) {
+            // Populate the new places based on the response
+            response.data.forEach(function(place) {
+                const placeItem = document.createElement('div'); // create a new div
+                placeItem.classList.add('place-item'); // then add a class for div followed the existing index
 
-              placeItem.innerHTML = `
-                  <div class="image-box">
-                      <img class="place-photo" src="https://media.istockphoto.com/id/1516933385/photo/3d-rendering-of-wooden-forest-house-surrounded-by-trees.jpg?s=612x612&w=0&k=20&c=gNMrzJw158wZaOg_vXgQ6obR0u2Vf4KghWLHxYD7_E8=" alt="random_place_photo">
-                  </div>
-                  <h2><i class="fa-solid fa-house-chimney"></i> ${place.title}</h2>
-                  <p><i class="fa-solid fa-quote-left quote"></i>${place.description}<i class="fa-solid fa-quote-right quote"></i></p>
-                  <div class="place-detail-box">
-                      <div class="des-box">
-                          <p><i class="fa-solid fa-location-dot"></i><strong>Latitude:</strong> ${place.latitude}</p>
-                          <p><i class="fa-solid fa-location-dot"></i><strong>Longitude:</strong> ${place.longitude}</p>
-                          <p><i class="fa-solid fa-dollar-sign"></i><strong>Price:</strong> ${place.price}</p>
-                      </div>
-                      <div class="rating-box">
-                          <p>Rating: ${Math.round(place.average_rating * 100) / 100}</p>
-                      </div>
-                  </div>
-                  <div id="detail-btn-box">
-                      <a id="detail-btn" href="/place/${place.place_id}">More details</a>
-                  </div>
-              `; // whole place card content
-              placesList.appendChild(placeItem); // add at the end
-          });
-      })
+                placeItem.innerHTML = `
+                    <div class="image-box">
+                        <img class="place-photo" src="https://media.gq.com/photos/66019f02c081abc36b271454/16:9/w_1280,c_limit/airbnb-art.jpg" alt="random_place_photo">
+                    </div>
+                    <h2><i class="fa-solid fa-house-chimney"></i> ${place.title}</h2>
+                    <p><i class="fa-solid fa-quote-left quote"></i>${place.description}<i class="fa-solid fa-quote-right quote"></i></p>
+                    <div class="place-detail-box">
+                        <div class="des-box">
+                            <p><i class="fa-solid fa-location-dot"></i><strong>Latitude:</strong> ${place.latitude}</p>
+                            <p><i class="fa-solid fa-location-dot"></i><strong>Longitude:</strong> ${place.longitude}</p>
+                            <p><i class="fa-solid fa-dollar-sign"></i><strong>Price:</strong> ${place.price}</p>
+                        </div>
+                        <div class="rating-box">
+                            <p>Rating: ${(isNaN(place.average_rating)) ? 'Not rated' : (Math.round(place.average_rating * 100) / 100)}</p>
+                        </div>
+                    </div>
+                    <div id="detail-btn-box">
+                        <a id="detail-btn" href="/place/${place.place_id}">More details</a>
+                    </div>
+                `; // whole place card content
+                placesList.appendChild(placeItem); // add at the end
+              });
+            } else {
+              const text = document.createElement('span');
+              const footer = document.querySelector('footer');
+              const emoji = `<i class="fa-regular fa-face-frown"></i>`;
+
+              text.innerHTML = `${emoji} No results found`;
+              text.style.textAlign = 'center';
+              text.style.position = 'absolute';
+              text.style.fontSize = '2rem';
+              placesList.appendChild(text);
+              if (text.innerHTML === `${emoji} No results found`) {
+                footer.style.bottom = '0';
+              }
+            }
+          })
       .catch(function(error) {
           console.error("There was an error fetching the places:", error);
       });
@@ -110,7 +115,7 @@ document.getElementById('reset-btn').addEventListener('click', function() {
 
             placeItem.innerHTML = `
                 <div class="image-box">
-                    <img class="place-photo" src="https://media.istockphoto.com/id/1516933385/photo/3d-rendering-of-wooden-forest-house-surrounded-by-trees.jpg?s=612x612&w=0&k=20&c=gNMrzJw158wZaOg_vXgQ6obR0u2Vf4KghWLHxYD7_E8=" alt="random_place_photo">
+                    <img class="place-photo" src="https://media.gq.com/photos/66019f02c081abc36b271454/16:9/w_1280,c_limit/airbnb-art.jp" alt="random_place_photo">
                 </div>
                 <h2><i class="fa-solid fa-house-chimney"></i> ${place.title}</h2>
                 <p><i class="fa-solid fa-quote-left quote"></i>${place.description}<i class="fa-solid fa-quote-right quote"></i></p>

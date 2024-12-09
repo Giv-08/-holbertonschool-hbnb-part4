@@ -13,23 +13,14 @@
   <header>
     <nav>
       <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
+      <div id="flash-message-login">You've logged in!</div>
       <ul>
         <li><a href="/contact">CONTACT US</a></li>
         <li><a href="/logout" id="login-link">LOGOUT</a></li>
       </ul>
-        <!-- search box -->
     </nav>
 </header>
 <main>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      {% for message in messages %}
-      <div id="flash-message">
-        <p>{{message}}</p>
-      </div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
   <h1>Welcome, {{ user.first_name }} {{ user.last_name }}</h1>
   <section id="user-details">
     <div id="user-box">
@@ -85,6 +76,7 @@
   </div>
 </div>
 </footer>
+  <script src="../static/log_message.js"></script>
   <script src="../static/scripts.js"></script>
 </body>
 </html>

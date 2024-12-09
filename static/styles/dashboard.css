@@ -12,14 +12,17 @@
   --box-shadow:#b8b8b8 2px 2px 2px;
 }
 
-#flash-message {
-  display: flex;
-  justify-content: center;
+html, body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  overflow-x: hidden;
+  box-sizing: border-box; /* Ensure padding and border do not affect the width/height */
 }
-#flash-message p {
+
+#flash-message-login {
   color: #0f8bd3;
-  top: 0;
   position: absolute;
+  left: 45%;
   text-align: center;
   margin: 20px 0 10px;
   padding: 10px 20px;
@@ -83,6 +86,10 @@ h3 {
   padding: 2rem;
   margin: 4rem;
 }
+#place-details #place-box .prop-card {
+  display: flex;
+  flex-direction: column;
+}
 #place-details #place-box .prop-card img {
   width: 240px;
   margin: 2rem;
@@ -103,7 +110,7 @@ h3 {
 }
 
 .edit-btn {
-  margin: 2rem;
+  text-align: center;
   padding: 5px 20px;
   background-color: var(--button-background);
   border-radius: 15px;
@@ -119,6 +126,23 @@ h3 {
   cursor: pointer;
   background-color: #c85e0d;
   box-shadow: #b8b8b8 4px 4px 4px;
+}
+
+@media (max-width: 1250px) {
+  #place-details {
+    grid-template-columns: 1fr 1fr;
+  }
+  #place-details #place-box {
+    margin: 2rem;
+  }
+  #place-details #user-details #user-box {
+    width: 550px;
+  }
+}
+@media (max-width: 750px) {
+  #place-details {
+    grid-template-columns: 1fr;
+  }
 }
 
 /*# sourceMappingURL=dashboard.css.map */

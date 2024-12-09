@@ -12,6 +12,13 @@
   --box-shadow:#b8b8b8 2px 2px 2px;
 }
 
+html, body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  overflow-x: hidden;
+  box-sizing: border-box; /* Ensure padding and border do not affect the width/height */
+}
+
 main #banner img {
   width: 100%;
 }
@@ -193,6 +200,21 @@ main section .places-container .place-card {
 main section .place-item:hover {
   transform: translateY(-10px);
   cursor: pointer;
+}
+
+@media (max-width: 750px) {
+  html {
+    width: fit-content;
+    box-sizing: border-box;
+  }
+  main section .places-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 480px) {
+  main section .places-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

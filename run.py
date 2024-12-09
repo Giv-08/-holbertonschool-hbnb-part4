@@ -24,16 +24,14 @@ jwt = JWTManager(app)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    user_id = session.get('user_id')
     if request.method == 'POST':
-        session['login'] = True
-        print("logged in!")
-        flash("You are successfully logged in!")
+        session['login'] = True # set a key flag to True
     return render_template('login.html')
 
 @app.route("/logout")
 def logout():
-    session.clear()
+    session.clear() # clear storage in server-side
+    session['logout'] = True
     print("logged out!")
     return redirect("/")
 
@@ -84,6 +82,7 @@ def sign_up():
 
 @app.route('/') # url = http://0.0.0.0:5000/
 def index():
+    print("Session data:", session)
     try:
         response = requests.get('http://0.0.0.0:5000/api/v1/places/')
         if response.status_code == 200:
@@ -94,7 +93,6 @@ def index():
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
         places = []
-
     return render_template('index.html', places=places)
 
 
@@ -161,6 +159,7 @@ def add_place():
 
 @app.route('/update_place/<place_id>', methods=["GET", "PUT", "DELETE"])
 def update_place(place_id):
+    user_id = session.get('user_id')
     if request.method == "GET":
         place = facade.get_place(place_id)
         if place:

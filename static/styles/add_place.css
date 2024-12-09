@@ -1,0 +1,65 @@
+:root {
+  --first-color: #a4cbc9;
+  --second-color: #3c3c46;
+  --link-color: #a4b6c2;
+  --hover-color: #f5b56c;
+  --base-color: #e1e1db;
+  --button-background: #f37a1f;
+  --bg-color: #f4f4f4;
+  --font-primary: #474040;
+  --white: #ffffff;
+  --black: #000000;
+  --box-shadow:#b8b8b8 2px 2px 2px;
+}
+
+main {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+main .place-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(128, 128, 128, 0.4784313725) 1px 1px 10px 1px;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+}
+main .place-box #place-photo {
+  width: 350px;
+  border-radius: 15px;
+}
+main .place-box form {
+  display: flex;
+  flex-direction: column;
+  margin: 4rem 4rem 0 4rem;
+}
+main .place-box form h2 {
+  margin: 2rem;
+  text-align: center;
+  font-family: "Lobster", cursive;
+}
+main .place-box form label {
+  margin-top: 1rem;
+}
+main .place-box form input {
+  border: none;
+  border-bottom: 1px solid var(--button-background);
+  padding: 10px 5px;
+}
+main .place-box form #submit-btn {
+  margin: 3rem 0;
+  padding: 5px 10px;
+  border: none;
+  background-color: var(--button-background);
+  color: var(--white);
+  border-radius: 15px;
+  transition: all 350ms ease-in-out;
+}
+main .place-box form #submit-btn:hover {
+  cursor: pointer;
+  background-color: #c85e0d;
+  box-shadow: #b8b8b8 4px 4px 4px;
+}
+
+/*# sourceMappingURL=add_place.css.map */

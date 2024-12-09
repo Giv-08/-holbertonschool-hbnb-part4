@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const sendEmail = (e) => {
-      e.preventDefault();
+      e.preventDefault(); // prevents the default page reload behavior
 
       // Log form data again before sending the email
       const formData = new FormData(contactForm);

@@ -17,12 +17,12 @@
       <a id="hbnb-logo" href="{{ url_for('index') }}"><img id="hbnb_logo" src="../static/assets/logo.png" alt="logo"></a>
       <ul>
         <li><a href="/contact">CONTACT US</a></li>
-        <!-- {% if session.get('loggedin') %} -->
-          <li><a href="#">DASHBOARD</a></li>
+          {% if session.get('jwt_token') %}
+          <li><a href="/dashboard">DASHBOARD</a></li>
           <li><a href="/logout" id="login-link">LOGOUT</a></li>
-        <!-- {% else %} -->
-          <li><a href="/login" id="login-link">LOGIN</a></li>
-        <!-- {% endif %} -->
+          {% else %}
+          <li><a href="{{ url_for('login') }}" id="login-link">LOGIN</a></li>
+          {% endif %}
       </ul>
     </nav>
 </header>

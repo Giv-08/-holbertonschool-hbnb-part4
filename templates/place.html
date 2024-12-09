@@ -18,12 +18,12 @@
       <ul>
         <!-- <li><a href="/">INDEX</a></li> -->
         <li><a href="/contact">CONTACT US</a></li>
-        {% if session.get('login') %}
+          {% if session.get('jwt_token') %}
           <li><a href="/dashboard">DASHBOARD</a></li>
           <li><a href="/logout" id="login-link">LOGOUT</a></li>
-        {% else %}
+          {% else %}
           <li><a href="{{ url_for('login') }}" id="login-link">LOGIN</a></li>
-        {% endif %}
+          {% endif %}
       </ul>
     </nav>
   </header>
